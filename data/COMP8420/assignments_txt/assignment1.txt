@@ -1,0 +1,145 @@
+COMP8420 2025 S1 Assignment 1 (Text Classification)
+Qiongkai Xu (qiongkai.xu@mq.edu.au)
+Due: Tuesday March 18th 2025 (Week 4)
+This assignment assesses the following unit learning outcomes:
+• ULO1: Compare and evaluate the key natural language processing applications that
+meet the current and emerging industry needs.
+• ULO2: Explain the main techniques that are used to develop and implement natural
+language processing applications.
+• ULO3: Implement natural language processing applications using common tools and
+libraries used in industry.
+• ULO4: Design natural language processing applications using advanced deep learning
+techniques.
+It is expected that students will need approximately 30 to 40 hours to com-
+plete the project individually.
+It accounts for 30% of the overall assessment for this unit.
+Start this assignment as soon as possible! Attend most of our lecturers and workshops to
+find hints for the assignment. Make (even tiny) pieces of progress every week. If you leave
+this project until the last minute, you won’t have enough time to complete it, even if you
+can program at 1000 lines per hour and you have a server with 100 GPUs.
+1
+Essential Timeline:
+• Release Date: Week 1 Lecture (Feb 28th 2025)
+• Due Date: Week 4 (Tuesday March 18th 2025)
+1
+Introduction
+Assignment 1 invites you to assist lecturers in developing analytical tools to classify human-
+or machine-generated texts. Unfortunately, your lecturers (playing a role as a less reliable
+boss in the future) only have the idea in mind but there is no data yet for this project.
+You are expected to tackle the challenge from scratch by developing a pipeline. Your tasks
+include:
+1. collecting a suitable dataset for this purpose;
+2. developing visualization and/or analytical tools;
+3. reporting your methodologies and the results.
+2
+Data Collection
+Since no data is currently available for the project, you must devise a strategy to collect
+an appropriate dataset. Keep in mind that the goal is to classify texts as either human- or
+machine-generated, so you will need two distinct sets of documents or texts. Additionally, to
+perform the classification task, each text must be labelled appropriately (for example, using
+‘0’ for human-generated texts and ‘1’ for machine-generated texts).
+Rubric [maximum 8 marks]:
+• Reusing a publicly available dataset [4 marks] or Collecting a proprietary dataset [6
+marks]
+• Data splitting [2 marks]
+Note: Deductions may apply if errors occur during the data collection process.
+3
+Data Analysis
+The first task is to provide an intuitive explanation on what distinguishes these two classes.
+To accomplish this, you are required to (1) use NLP techniques such as tokenization and
+n-gram to extract features from the texts; (2) implement a statistical model (for example, a
+logistic regression classifier); (3) demonstrate the significance of the extracted features; and
+(4) convincingly present your findings to your evaluators (or, in the future, your boss).
+2
+Rubric [maximum 8 marks]:
+• Feature extraction [2 marks]: Either one-hot and tf-idf approaches are acceptable for
+full marks here; however, using both will provide you with more experiments to discuss
+in the next two questions.
+• Statistical classifier [2 marks]: Correctly implementing logistic regression (or other
+more advanced statistical classifiers) with reasonable performance will be worth full
+marks here.
+• Comparison [2 marks]: Comparing different settings of your experiments, e.g., varying
+features, classifiers or datasets. One mark for each comparison experiment.
+• Analysis and report [2 marks]: Full marks can be earned by analysing your classifier’s
+weights to identify the key factors or features.
+Note 1: Deductions may apply if errors occur during the data analysis process.
+Note 2: You may consider skipping this section if you are short on time.
+4
+Deep Learning-Based Classification
+In this task, you will develop a classifier using deep learning techniques. Your objectives are
+to (1) train (2) validate and (3) test your classifier based on your dataset.
+Rubric [maximum 14 marks]:
+• Classifier Setup [2 Marks]: Initialize and configure your deep learning model correctly.
+• Validation Set Usage [2 Marks]: Properly integrate a validation set to guide model
+development and tuning.
+• Training Process [2 Marks]: Execute a comprehensive training process and clearly
+document the procedure.
+• Performance Demonstration [2 Marks]: Present detailed metrics and outcomes that
+reflect your model’s performance.
+• Method Analysis [2 Marks]: Provide a thorough discussion on the strengths and weak-
+nesses of your approach.
+• Report and Code Clarity [2 Marks]: Ensure that both your report and code are well-
+organized and easy to understand.
+• Model and Hyperparameter Comparison [2 Marks]: Compare multiple models or dif-
+ferent hyperparameter configurations to justify your choices.
+Note 1: Deductions may apply if errors occur during the data analysis process.
+Note 2: You are permitted to use pre-trained language models as a foundation to expedite
+training. Note 3: Given its high impact on your overall score, allocate sufficient time and
+effort to this task.
+3
+5
+Advancing Your Project
+You have the opportunity to earn an additional 0.5 to 3 bonus points — and possibly even
+a complimentary cup of coffee from Qiongkai — by excelling in the following areas:
+• Developing a comprehensive dataset that demonstrates strong potential for use in
+related research.
+• Proposing an innovative solution that could significantly influence and drive forward
+the research field.
+• Showcasing robust generalization capabilities, such as supporting multiple languages,
+accommodating diverse user groups, or integrating various generative models.
+Note: The total assignment score is capped at 30 points.
+6
+Submission
+You are required to submit a Python Jupyter Notebook to iLearn for marking. The notebook
+should contain three clear sections, (1) Dataset, (2) Data Analysis and (3) Classification.
+Both runnable code and explanation should be provided in the notebook. If you have col-
+lected a proprietary dataset (presumably less than 5 MB), you can submit it as well.
+7
+Notes
+Should I use PyTorch or TensorFlow?
+Both frameworks are acceptable for our as-
+signments. Please choose the one with which you are most comfortable at the moment. In
+alignment with our workshop settings, we highly encourage you to become familiar with
+PyTorch as soon as possible.
+Can I use other tools in my assignments?
+In general, any publicly available Python
+package is permitted. However, you must clearly specify the tools and libraries you utilize
+in your assignment.
+Can I reuse previous projects or assignments from other units (e.g., COMP3420)?
+It’s allowed to reuse code pieces from other units, but please note that a simplistic approach
+won’t solve the whole problem or earn you high marks. It’s encouraged to develop a fresh
+project and solution.
+Can I use materials from workshops?
+Absolutely. You are encouraged to apply, mod-
+ify, and implement any tools introduced during our workshops. Keep in mind, though, that
+simply copying and pasting code will not result in a satisfactory solution—your understand-
+ing of the concepts and techniques is crucial and will significantly influence your score.
+4
+What is the collaboration policy?
+This assignment must be completed individually,
+and each student is required to submit their own work via iLearn. While discussing ideas
+with classmates is permitted, your final submission must be entirely your own work.
+8
+Policy
+Late Submission Policy:
+For both assignments and the major project, NO late sub-
+mission policy applies, unless Special Consideration has been submitted and approved. All
+deadlines mean 11:59:59 pm that day.
+Special Consideration Policy:
+The Special Consideration Policy aims to support stu-
+dents who have been impacted by short-term circumstances or events that are serious, un-
+avoidable and significantly disruptive, and which may affect their performance in assessment.
+If you experience circumstances or events that affect your ability to complete the assessments
+in this unit on time, please inform the convenor and submit a Special Consideration request
+through ask.mq.edu.au.
+5

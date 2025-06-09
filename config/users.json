@@ -1,0 +1,69 @@
+[
+    {
+        "username": "student1",
+        "password": "student123",
+        "role": "student"
+    },
+    {
+        "username": "teacher1",
+        "password": "teacher123",
+        "role": "teacher"
+    },
+    {
+        "username": "admin",
+        "password": "admin123",
+        "role": "admin"
+    },
+    {
+        "username": "Nadim Al Yeasin",
+        "password": "password123",
+        "role": "student",
+        "courses": [
+            "COMP8420"
+        ]
+    },
+    {
+        "username": "Qiongkai Xu",
+        "password": "password123",
+        "role": "teacher",
+        "courses": [
+            "COMP8420"
+        ]
+    },
+    {
+        "id": "1001",
+        "username": "shaimonrahman1001.student@lms.edu",
+        "password": "password123",
+        "role": "student",
+        "courses": [
+            "COMP8420"
+        ]
+    },
+    {
+        "id": "1002",
+        "username": "qiongkaixu1002.teacher@lms.edu",
+        "password": "password123",
+        "role": "teacher",
+        "courses": [
+            "COMP8420"
+        ]
+    },
+    {
+        "id": "1003",
+        "username": "nadimalyeasin1003.student@lms.edu",
+        "password": "password123",
+        "role": "student",
+        "courses": [
+            "COMP8430"
+        ]
+    },
+    {
+        "id": "1004",
+        "username": "diegomolla1004.teacher@lms.edu",
+        "password": "password123",
+        "role": "teacher",
+        "courses": [
+            "COMP8430"
+        ]
+    }
+]

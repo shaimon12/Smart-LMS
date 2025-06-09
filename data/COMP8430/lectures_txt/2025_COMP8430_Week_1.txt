@@ -1,0 +1,364 @@
+Advanced Computer Vision and Action (COMP8430)
+Dr Diego Molla-Aliod
+Dr Xiaohan Yu
+Macquarie University
+Acknowledgement of Country
+I acknowledge the traditional custodians of the Macquarie
+University land, the Wallumattagal clan of the Dharug nation,
+whose cultures and customs have nurtured, and continue to
+nurture, this land, since the Dreamtime. We pay our respects to
+Elders past, present and future.
+Welcome to COMP8430
+We're delighted to have you embark on this exciting journey into
+the world of computer vision and its profound impact on the future
+of AI technology.
+In this unit, you'll delve deep into the fundamentals of computer
+and human vision, explore how images are processed at their core,
+and discover cutting-edge techniques like reinforcement learning.
+You'll witness how computer vision is used in real-world
+applications such as object detection, image style transfer.
+By the end of this journey, you'll be equipped with the advanced
+skills needed to work with state-of-the-art deep learning models and
+technologies, unlocking a world of possibilities in the realm of AI
+and computer vision.
+Staff
+Diego Molla-Aliod: Lecturer (diego.molla-aliod@mq.edu.au)
+Xiaohan Yu: Unit convenor, Lecturer (xiaohan.yu@mq.edu.au)
+Guest Lecturer TBD
+Delivery Lecture
+Delivery Practical
+Lecture Schedule – Xiaohan
+Week 1
+Review of Basic Computer Vision
+Week 2
+Managing your Computer Vision Project
+Week 3
+Transfer Learning
+Week 4
+Generative Adversarial Networks
+Week 5
+DeepDream and Neural Style Transfer
+Week 6
+Visual Embeddings
+Lecture Schedule – Diego
+Week 7
+Introduction to Reinforcement Learning
+ 
+RECESS
+Week 8
+Deep Reinforcement Learning
+Week 9
+Practical Reinforcement Learning for Computer Vision and Action
+Week 10
+Advanced Object Detection
+Week 11
+Image Generation from Text
+Week 12
+Guest Lecture
+Communication
+We will communicate with you via your university email or through
+announcements in iLearn.
+Queries to convenors can be made via the Contact tool in iLearn or
+sent to Xiaohan.yu@mq.edu.au from your university email address.
+Reading
+Ayyadevara, Reddy (2024), Modern Computer Vision with PyTorch
+- Second Edition
+François Chollet (2021). Deep Learning with Python, 2nd Edition.
+Manning Publications. Available in the library.
+Valliappa Lakshmanan, Martin Görner, Ryan Gillard (2021),
+Practical Machine Learning for Computer Vision. O'Reilly. Available
+in the library.
+Mohammed Elgendy (2020), Deep Learning for Vision Systems.
+Manning Publications. Available in the library.
+Rajalingappaa Shanmugamani (2018), Deep Learning for Computer
+Vision: expert techniques to train advanced neural networks using
+TensorFlow and Keras. Pakt Publishing. Available in the library.
+Assessment Components
+Assessment
+Assessments where Late Submissions will be accepted
+Assignment 1 - YES, Standard Late Penalty applies
+Assignment 2 - YES, Standard Late Penalty applies
+Major Project - YES, Standard Late Penalty applies
+Exam - NO, unless Special Consideration is Granted
+Check iLearn for more details.
+Final Assessment
+The assessment of this unit consists of three assignments and a final
+exam.
+You will submit the solutions to the three assignments via iLearn by
+the due date.
+The final examination is a closed book examination, and will be
+taken in person during the exam period.
+To pass this unit, you must achieve a total mark equal or greater
+than 50%.
+This unit does not have hurdle assessments.
+Plagiarism
+You may discuss but not write together.
+Read the Academic Integrity Policy. https://policies.mq.edu.au/
+document/view.php?id=3
+Web Resources
+The unit is available in iLearn (http://ilearn.mq.edu.au).
+All the administrative material presented in this lecture is also
+available at this site.
+Unit Outline.
+Administrative Information.
+Lecture Notes and recordings.
+Pointers to Reading.
+Other Useful Stuff.
+Are you considering using ChatGPT or other generative AI tools in
+this Unit? Check the unit information FIRST to help you follow the
+rules and consider the issues around use of gen AI in your study.
+Here’s an introduction to working with generative AI at university:
+https://bit.ly/3uxgQP4
+Get to know each other
+A short description of
+Yourself
+Learning background
+Why this unit
+Popular computer vision application
+Retinal vein segmentation
+Water removing
+Plant disease classification
+Agriculture
+Health
+Ecology
+Economic
+More
+Applications
+Face landmark detection
+Lecture 1 Review of Basic Computer Vision
+Dr Xiaohan Yu
+Macquarie University
+Fundamental Concepts in Computer Vision
+Introduction to Computer Vision:
+Image Representation and Processing
+Feature Extraction
+Image Classification
+Object Detection and Localization
+Fundamental Concepts in Computer Vision
+Introduction to Computer Vision:
+Computer vision involves the development of algorithms and
+techniques for interpreting and understanding visual data from the
+real world. It encompasses various tasks such as image
+classification, object detection, segmentation, and scene
+understanding.
+Components
+Machine Learning (ML)
+--- Learn from data & predicts w/o being explicitly programmed
+Deep Learning (DL)
+--- Subfield of machine learning that utilizes artificial neural
+networks
+Computer Vision (CV)
+--- Perceive & understand visual information from images/videos
+Natural Language Processing (NLP)
+--- Understand, interpret, and generate human language
+CV
+NLP
+Question: what can be achieved with the components?
+Fundamental Concepts in Computer Vision
+Image Representation and Processing:
+Images are represented as arrays of pixel values. Basic operations
+include resizing, cropping, rotating, and filtering images using
+techniques like convolution and smoothing. Color spaces such as
+RGB, HSV, and grayscale are also fundamental concepts.
+Is it necessary?
+Fundamental Concepts in Computer Vision
+Feature Extraction:
+Feature extraction involves identifying informative characteristics
+from images that can be used for further analysis. Common
+techniques include edge detection, corner detection, and feature
+descriptors like SIFT, SURF, and ORB.
+What is desirable feature?
+Fundamental Concepts in Computer Vision
+Image Classification:
+Image classification is the task of assigning labels or categories to
+images based on their visual content. Traditional approaches
+include machine learning algorithms like Support Vector Machines
+(SVM), k-Nearest Neighbors (k-NN), and decision trees. Deep
+learning methods, particularly Convolutional Neural Networks
+(CNNs), have revolutionized image classification in recent years.
+Is it an easy task?
+Fundamental Concepts in Computer Vision
+Object Detection and Localization:
+Object detection involves identifying and locating objects within
+images. Techniques such as sliding window-based methods, region-
+based convolutional neural networks (R-CNN), and single-shot
+detectors (SSD) are commonly used for this task.
+Question
+What to know in the very beginning for computer vision?
+Image Enhancement
+1.1 What is image enhancement?
+--- Modify the intensities of pixels in an image so that it can be
+more suitable for a specific application.
+Different enhancement process suits different application.
+An enhancement method is good for an application but maybe bad
+for another application.
+1. Introduction
+Question: Is image enhancement related to advance CV?
+Image Enhancement
+1.2 Categories of methods for enhancement process.
+Spatial domain: process pixels in the image plane directly.
+Frequency domain: modify the Fourier transform of an image.
+Yes! Low level vision – image denoising, super resolution. Key for
+CNN!
+Image Enhancement
+Mathematically, the enhancement process in the spatial domain can
+be described by the transform function
+g(x,y) = T [f(x,y)]
+𝑓(x,y) --- input image,
+g(x,y) --- output image,
+T --- a transform
+For a single pixel, we have: s = T (r)
+r --- grey-level value for an input pixel
+s --- grey-level value for an output pixel
+ 
+Image Enhancement
+Grey-level value transform graph
+We use a graph to denote the transform function s = T (r) .
+r
+s
+T(r)=r
+r
+s
+T(r)
+r
+s
+T(r)
+No change image brighter image darker
+Question: what will happen?
+Dark - Light
+Dark - Light
+Image Enhancement
+Two simple examples for contrast enhancement
+x
+Question: what will happen?
+L-1
+L-1
+0
+T(r)
+s
+r
+2. Transformations
+2.1. Image negatives
+Image Enhancement
+2.2. Contrast stretching
+For a low-contrast image, we feel it uncomfortable and sometimes
+can not see details clearly.
+Image Enhancement
+Mathematically, We have following transform for stretching
+contrast.
+Image Enhancement
+3. Filtering
+Removing or intensifying some components in an image by using
+enhancement processing is called filtering.
+Using spatial masks to process an image is called spatial filtering
+Using the Fourier transform to process an image is called Frequency
+domain filtering.
+Image Enhancement
+3.1. Mask
+Applying a mask to an image is a basic concept in image processing
+– convolution.
+(1) What is a mask: A mask is a set of pixel positions with values
+called weights. A 3x3 mask is as follows.
+1
+1
+1
+1
+1
+1
+1
+1
+1
+2
+1
+1
+2
+4
+2
+1
+2
+1
+Image Enhancement
+(2) How to use a mask:
+For any point (x,y) in the image, align the center of the mask to it.
+We have
+(x,y)
+Image Enhancement
+3.2. Smoothing filters
+For low-pass filtering --- called smooth processing
+Image Enhancement
+3.3. Sharpening filters
+For High-pass filtering
+Image Enhancement
+Question
+What else to know about start a computer vision project?
+Basic Concepts
+Data collection & processing
+Training a model with the input data
+Training loss
+Error metrics
+Tensor
+Vector: 1D array
+Matrix: 2D array
+Tensor: an array with any number of dimensions
+Rank: number of dimensions
+Example: A matrix with 12 rows and 18 columns has a shape of (12,
+18) and a rank of 2.
+What is the size/dimension of an input image?
+Output of classification model
+Probability (p) --- the likelihood that an event will occur over many
+trials.
+Odds --- the probability of the event occurring divided by the
+probability of it not occurring, p/(1-p)
+Logit (log(p/1-p)) --- the natural logarithm of the odds of the event
+happening.
+Sigmoid 𝜎𝑌=𝑝 --- the inverse of the logit function.
+𝜎𝑌=11+𝑒−𝑌
+ 
+What is the sigmoid output range?
+Try to derive from sigmoid to logit?
+Output of classification model
+Softmax --- multiclass counterpart of the sigmoid. Given N mutually
+exclusive events, their logits are 𝑌𝑗, then softmax(𝑌𝑗 ) provides the
+probability of the jth event.
+S𝑌𝑗=𝑒−𝑌𝑗𝑗𝑒−𝑌𝑗
+The softmax function is nonlinear and has the effect of squashing
+low values and boosting the maximum.
+ 
+Training Loss for Classification
+Cross Entropy --- Compare the output probability (𝑝𝑗 for the jth
+class) of the model against the true label for that class (𝐿𝑗) and sum
+this up over all the classes using the formula.
+𝑗(−𝐿𝑗log⁡(𝑝𝑗)) 
+If the model gets it exactly correct, this probability will be
+log(1)=0, so the loss is 0; if the model gets it exactly wrong, the
+probability will be 0, log(0) is –infinity, so the loss is +infinity, the
+worst possible loss.
+ 
+Error metrics
+Accuracy --- simply the fraction of instances that are classified
+correctly
+Precision --- the fraction of true positives in the set of identified
+positives: TP/(TP+FP).
+Recall --- the fraction of true positives among all the positives in the
+dataset: TP/(TP+FN).
+F1 --- 2/[1/precision + 1/recall]
+Predicted as Fake
+Predicted as Genuine
+Actual Fake ID
+True Positives (TP)
+False Negatives (FN)
+Actual Genuine ID
+False Positives (FP)
+True Negatives (TN)
+Tools
+Pytorch (https://pytorch.org) & Tensorflow
+--- Deep learning implementation framework
+GitHub: https://github.com
+--- Code access and management
+Coursera: https://www.coursera.org
+--- Lectures & theory for AI
+Kaggle: https://www.kaggle.com
+--- Competition in AI & Industry trend/need
+CV
+NLP
+Conclusion
