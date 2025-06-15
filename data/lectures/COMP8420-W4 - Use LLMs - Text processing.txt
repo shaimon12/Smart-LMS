@@ -1,0 +1,851 @@
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or has licence to 
+use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Lecture 4 | Date: 21st March 2025 | Prof. Longbing Cao | Www.DataSciences.Org
+COMP 8420 Advanced NLP
+USING LLMS - TEXT CLASSIFICATION, GENERATION AND SUMMARIZATION
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Agenda – This week
+OFFICE | FACULTY | DEPARTMENT
+2
+• LLMs for text classification
+• LLMs for sentiment analysis, topic modeling 
+• LLMs for text generation 
+• LLMs for text summarization
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+References
+OFFICE | FACULTY | DEPARTMENT
+3
+• Natural Language Processing with Transformers
+• Chapter 5: text generation
+• Chapter 6: summarization 
+• Hands-on Large Language Models
+• Chapter 4: text classification
+• Chapter 7: text generation
+• Online resources/public domains
+• The slides may involve materials from online, public domains, 
+and other lectures etc., do not share the slides
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs: Text classification, 
+and sentiment analysis
+LLMS TO CLASSIFY TEXT AND SENTIMENT
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text classification
+OFFICE | FACULTY | DEPARTMENT
+5
+• Text classification
+• The most common NLP 
+task
+• Applications
+• Categorize customer 
+feedback
+• Detect email spams
+• Sentiment analysis: e.g. 
+sentiment from text to 
+image
+https://learning.oreilly.com/library/view/hands-on-large-language
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text classification
+OFFICE | FACULTY | DEPARTMENT
+6
+• LLM Classification
+• Zero-shot 
+classification
+• Few-shot 
+classification
+• Fine-tuning 
+https://learning.oreilly.com/library/view/natural-language-processing
+Chapter 9
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text classification
+OFFICE | FACULTY | DEPARTMENT
+7
+• Representation 
+models: 
+• Pretrained task-
+specific models and 
+embedding models
+• Generative 
+models: 
+• Open source and 
+closed source 
+language models
+Chapter 4
+https://learning.oreilly.com/library/view/hands-on-large-language
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text classification
+OFFICE | FACULTY | DEPARTMENT
+8
+• Representation 
+models: 
+• Task-specific models
+• Embedding models
+Chapter 4
+https://learning.oreilly.com/library/view/hands-on-large-language
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text classification
+OFFICE | FACULTY | DEPARTMENT
+9
+• Representation 
+models: 
+• Task-specific models
+• Embedding models
+• Pretrained task-specific 
+models 
+• Perform classification
+• Encoder-based models: 
+RoBERTa, DistilBERT, 
+ALBERT, and DeBERTa
+https://learning.oreilly.com/library/view/hands-on-large-language
+import numpy as np 
+from tqdm import tqdm 
+from transformers.pipelines.pt_utils import KeyDataset 
+# Run inference 
+y_pred = [] 
+for output in tqdm(pipe(KeyDataset(data["test"], "text")), total=len(data["test"])): 
+    negative_score = output[0]["score"] 
+    positive_score = output[2]["score"] 
+    assignment = np.argmax([negative_score, positive_score]) 
+    y_pred.append(assignment) 
+Chapter 4
+https://learning.oreilly.com/library/view/hands-on-large-language
+from transformers import 
+TFAutoModelForSequenceClassification
+ 
+model = 
+TFAutoModelForSequenceClassification.from_pr
+etrained( ... "distilbert/distilbert-base-
+uncased", num_labels=2, id2label=id2label, 
+label2id=label2id ... )
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text classification
+OFFICE | FACULTY | DEPARTMENT
+10
+• Representation models: 
+• Embedding models 
+• Pretrained LLMs 
+unavailable
+• Insufficient computing
+• Use embedding models 
+to generate features
+• Fit into a classifier 
+• Zero shot classification
+• No labelled data
+• Unseen labels
+• Map input to labels
+• Embedding models
+Chapter 4
+https://learning.oreilly.com/library/view/hands-on-large-language
+Massive Text Embedding Benchmark (MTEB) Leaderboard: https://huggingface.co/spaces/mteb/leaderboard
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text classification
+OFFICE | FACULTY | DEPARTMENT
+11
+• Representation models: 
+• Embedding models,
+• Zero shot classification
+• No labelled data
+• Candidate labels: unseen 
+labels
+• Map input to labels
+• Document-label similarity
+• Cosine similarity
+• Ref.
+• Embedding models can 
+support various NLP and AI 
+tasks
+• Zero-shot classification by 
+Transformers
+Chapter 4
+https://learning.oreilly.com/library/view/hands-on-large-language
+# Create embeddings for our labels 
+label_embeddings = model.encode(["A negative review", "A positive review"])
+ 
+from sklearn.metrics.pairwise import cosine_similarity 
+# Find the best matching label for each document 
+sim_matrix = cosine_similarity(test_embeddings, label_embeddings) 
+y_pred = np.argmax(sim_matrix, axis=1)
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text classification
+OFFICE | FACULTY | DEPARTMENT
+12
+• Generative models:
+• Generate an output rather 
+than predict a class label
+• The output generation 
+requires guidance: 
+• Instruction, or prompt, 
+to a model
+• Prompt engineering: 
+iteratively improving 
+prompts to get the 
+preferred output
+https://learning.oreilly.com/library/view/natural-language-processing
+Chapter 9
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text classification
+OFFICE | FACULTY | DEPARTMENT
+13
+• Generative models:
+• Zero shot classification
+• by Transformers
+https://learning.oreilly.com/library/view/natural-language-processing
+Chapter 9
+# initiate MNLI model via a pipeline
+from transformers import pipeline 
+# classify a text
+pipe = pipeline("zero-shot-classification", device=0)
+sample = ds["train"][0] 
+print(f"Labels: {sample['labels']}") 
+output = pipe(sample["text"], all_labels, multi_label=True) 
+print(output["sequence"][:400]) 
+print("\nPredictions:") 
+for label, score in zip(output["labels"], output["scores"]): 
+    print(f"{label}, {score:.2f}")
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text classification
+OFFICE | FACULTY | DEPARTMENT
+14
+• Generative models:
+• Zero shot classification
+• Text-to-Text Transfer 
+Transformer, T5 Model, 
+• 12 decoders and 12 
+encoders
+• Training: pretraining  fine-
+tuning
+• Pretraining: masked 
+language modelling
+• Sets of tokens (token 
+spans) are masked
+• Predict multiple tokens
+https://learning.oreilly.com/library/view/hands-on-large-language
+Chapter 4
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text classification
+OFFICE | FACULTY | DEPARTMENT
+15
+• Generative models:
+• Zero shot classification
+• Training: pretraining  fine-
+tuning
+• Fine-tuning
+• Variety of multiple tasks 
+simultaneously 
+• Each task is converted 
+to a sequence-to-
+sequence task
+• Instruction data
+• Practice
+https://learning.oreilly.com/library/view/hands-on-large-
+language: Chapter 4
+Scaling instruction-finetuned language models: 
+https://oreil.ly/yl9Et
+# Load our model 
+pipe = pipeline( "text2text-generation", model="google/flan-t5-small", 
+device="cuda:0" )
+ # Prepare our data 
+prompt = "Is the following sentence positive or negative? " 
+data = data.map(lambda example: {"t5": prompt + example['text’]})
+ data 
+# Run inference 
+y_pred = [] 
+for output in tqdm(pipe(KeyDataset(data["test"], "t5")), 
+total=len(data["test"])): 
+       text = output[0]["generated_text"] 
+       y_pred.append(0 if text == "negative" else 1) 
+evaluate_performance(data["test"]["label"], y_pred)
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text classification
+OFFICE | FACULTY | DEPARTMENT
+16
+• Generative models:
+• ChatGPT for classification
+• Closed source models
+• Decoder-only 
+architecture
+• Preference tuning
+• Manually create desired 
+output to an input prompt
+• Use the data to create a 
+first variant of the model
+• Use the result to generate 
+multiple manually ranked 
+outputs from best to 
+worst  preference data
+• Create the final model
+https://learning.oreilly.com/library/view/hands-on-large-language
+Chapter 4
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text classification
+OFFICE | FACULTY | DEPARTMENT
+17
+• Generative models:
+• ChatGPT for classification
+• Access through OpenAI API
+• Create an API key
+• Create 
+chatgpt_generation 
+function
+• Create a template for 
+the model to classify
+https://learning.oreilly.com/library/view/hands-on-large-language
+Chapter 4
+import openai 
+# Create client 
+client = openai.OpenAI(api_key="YOUR_KEY_HERE")
+def chatgpt_generation(prompt, document, model="gpt-3.5-turbo-0125"):   
+  """Generate an output based on a prompt and an input document.""" 
+  messages=[ 
+    { 
+      "role": "system", "content": "You are a helpful assistant." 
+       }, 
+    { "role": "user", "content": prompt.replace("[DOCUMENT]", document) 
+       } 
+  ] 
+  chat_completion = client.chat.completions.create( 
+     messages=messages, 
+     model=model, 
+     temperature=0 
+  ) 
+  return chat_completion.choices[0].message.content 
+# Define a prompt template as a base 
+prompt = """Predict whether the following document is a positive or negative movie review: 
+[DOCUMENT] 
+If it is positive return 1 and if it is negative return 0. Do not give any other answers. 
+""" 
+# Predict the target using GPT 
+document = "unpretentious , charming , quirky , original" 
+chatgpt_generation(prompt, document)
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text classification
+OFFICE | FACULTY | DEPARTMENT
+18
+• Generative models:
+• Few shot classification
+• In Chapter 9, you can also find examples on
+• Fine-tuning vanilla Transformer
+• Fine-tuning a language model
+• Fine-tuning a classifier
+• Using strategies such as 
+• Data augmentation: token perturbation, 
+back translation 
+• Using embeddings as a lookup table
+• In-context and few-shot learning with 
+prompts
+• Transfer learning with unlabelled data
+https://learning.oreilly.com/library/view/natural-language-processing
+Chapter 9
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs: Text generation
+LLMS TO GENERATE TEXT
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text generation
+OFFICE | FACULTY | DEPARTMENT
+20
+• Text generation by LLMs
+• Fine-tuning LLMs
+• Generation techniques 
+• Model I/Q: load and work with LLMs
+• Memory: make LLMs to remember
+• Retrieval: search knowledge 
+• Agents: engage external tools
+• Chains: connect methods and modules
+• LangChain framework
+• Mixing the above techniques
+• https://oreil.ly/gmWSX
+https://learning.oreilly.com/library/view/hands-on-large-language
+Chapter 7
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text generation
+OFFICE | FACULTY | DEPARTMENT
+21
+• Model I/Q: load quantized models 
+with LangChain
+• Quantization: 
+• Reduce number of bits to represent LLM 
+parameters but maintain most of original 
+information
+• Different quantization methods
+• FP32, FP16
+• 1-bit LLMs: BitNet
+• GPTQ: full model on GPU
+• GGUF: offload layers on CPU
+• Faster, less VRAM, but with loss in precision 
+(as accurate as possible)
+https://learning.oreilly.com/library/view/hands-on-large-language: Chapter 7
+https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text generation
+OFFICE | FACULTY | DEPARTMENT
+22
+• Model I/Q: load quantized models 
+with LangChain
+• Load the model
+• Download the GGUF model
+• Load it by LlamaCPP with LangChain
+https://learning.oreilly.com/library/view/hands-on-large-language: Chapter 7
+https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization
+# download the model
+!wget https://huggingface.co/microsoft/Phi-3-mini-4k-
+instruct-gguf/resolve/main/Phi-3-mini-4k-instruct-fp16.gguf
+#load GGUF file
+from langchain import LlamaCpp 
+# Make sure the model path is correct for your system! 
+llm = LlamaCpp( 
+    model_path="Phi-3-mini-4k-instruct-fp16.gguf", 
+    n_gpu_layers=-1, 
+    max_tokens=500, 
+    n_ctx=2048, 
+    seed=42, 
+    verbose=False 
+) 
+# generate output
+llm.invoke("Hi! My name is Maarten. What is 1 + 1?")
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text generation
+OFFICE | FACULTY | DEPARTMENT
+23
+• Chains: connect methods and 
+modules
+• Using LLMs with other components, tools, 
+prompts or features, or connecting multiple 
+chains
+• A single chain
+• Example: with Phi-3 prompt template
+• Define the user and system prompts 
+only
+• Avoid copy-paste prompt template 
+each time when using LLMs
+https://learning.oreilly.com/library/view/hands-on-large-language
+Chapter 7
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text generation
+OFFICE | FACULTY | DEPARTMENT
+24
+• Chains: connect methods and 
+modules
+• A single chain
+• A prompt template 
+https://learning.oreilly.com/library/view/hands-on-large-language
+Chapter 7
+from langchain import PromptTemplate 
+# Create a prompt template with the "input_prompt" variable 
+template = """<s><|user|> 
+{input_prompt}<|end|> 
+<|assistant|>""" 
+prompt = PromptTemplate( 
+    template=template, 
+    input_variables=["input_prompt"] 
+)
+#create chain 
+basic_chain = prompt | llm 
+# Use the chain 
+basic_chain.invoke( 
+    { "input_prompt": "Hi! My name is Maarten. What is 1 + 1?", 
+    } 
+)
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text generation
+OFFICE | FACULTY | DEPARTMENT
+25
+• Chains: connect methods and 
+modules
+• A single chain
+• Multiple prompts
+• Example: generating a story with
+• A title
+• A description of the main character
+• A summary of the story
+https://learning.oreilly.com/library/view/hands-on-large-language
+Chapter 7
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text generation
+OFFICE | FACULTY | DEPARTMENT
+26
+• Memory: make LLMs to remember
+• LLMs out of the box won’t remember
+• LLM memorization of conversations
+• Conversation buffer
+• Windowed conversation buffer
+• Conversation summary
+https://learning.oreilly.com/library/view/hands-on-large-language
+Chapter 7
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text generation
+OFFICE | FACULTY | DEPARTMENT
+27
+• Memory: make LLMs to remember
+• Conversation buffer
+• Remember the conversation in full
+• Copy the conversation history
+• Paste into prompt
+• Add input variable: chat_history
+• Create LangChain memory 
+ConversationBufferMemory
+• Assign the memory to the input variable
+https://learning.oreilly.com/library/view/hands-on-large-language: Chapter 7
+# Create an updated prompt template to include a chat history 
+template = """<s><|user|>Current conversation:{chat_history}
+{input_prompt}<|end|> <|assistant|>""" 
+prompt = PromptTemplate( 
+    template=template, 
+    input_variables=["input_prompt", "chat_history"] 
+) 
+from langchain.memory import ConversationBufferMemory 
+# Define the type of memory we will use 
+memory = ConversationBufferMemory(memory_key="chat_history") 
+# Chain the LLM, prompt, and memory together 
+llm_chain = LLMChain( 
+    prompt=prompt, 
+    llm=llm, 
+    memory=memory 
+) 
+# Generate a conversation and ask a basic question 
+llm_chain.invoke({"input_prompt": "Hi! My name is Maarten. What is 1 + 
+1?"})
+# Does the LLM remember the name we gave it? 
+llm_chain.invoke({"input_prompt": "What is my name?"})
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text generation
+OFFICE | FACULTY | DEPARTMENT
+28
+• Memory: make LLMs to remember
+• Windowed conversation buffer
+• Size of conversations  size of input 
+prompts  exceed token limit
+• Last k conversations vs full history
+• Unsuitable for lengthy conversations
+• Conversation summary
+• Summarize the conversation history
+• Distil main points
+https://learning.oreilly.com/library/view/hands-on-large-language
+Chapter 7
+from langchain.memory import ConversationBufferWindowMemory 
+# Retain only the last 2 conversations in memory 
+memory = ConversationBufferWindowMemory(k=2, memory_key="chat_history")
+from langchain.memory import ConversationSummaryMemory 
+# Define the type of memory we will use 
+memory = ConversationSummaryMemory( 
+    llm=llm, 
+    memory_key="chat_history", 
+    prompt=summary_prompt 
+)
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text generation
+OFFICE | FACULTY | DEPARTMENT
+29
+• Agents: engage external tools 
+toward LLM systems
+• Integrate various tools, eg model I/O, 
+chains, memory, etc., into systems
+• Automate tool use and action-taking
+• Perform various tasks
+• Aim for general problem solving
+• Reasoning and acting (ReAct)
+https://learning.oreilly.com/library/view/hands-on-large-language
+Chapter 7
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text generation
+OFFICE | FACULTY | DEPARTMENT
+30
+• Agents: engage external tools 
+toward LLM systems
+• Reasoning and acting (ReAct)
+• Reason to act: reasoning affects acting
+• Act to reason: actions affect reasoning
+• Interleaving steps:
+• Thought: ask LLM to create a thought 
+about input prompt (what it thinks to do 
+next and why)
+• Action: trigger an action by external tool 
+eg a search engine
+• Observation: observe the output eg 
+summary of retrieval
+https://learning.oreilly.com/library/view/hands-on-large-language: Chapter 7
+ReAct: Synergizing reasoning and acting in language models: arXiv:2210.03629 (2022).
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text generation
+OFFICE | FACULTY | DEPARTMENT
+31
+• Agents: engage external tools 
+toward LLM systems
+• Reasoning and acting (ReAct)
+• Thought: what agent should do
+• Action: what it will do
+• Observation: the results of action
+• An example
+https://learning.oreilly.com/library/view/hands-on-large-language: Chapter 7
+ReAct: Synergizing reasoning and acting in language models: arXiv:2210.03629 (2022).
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text generation
+OFFICE | FACULTY | DEPARTMENT
+32
+• Agents: engage external tools 
+toward LLM systems
+• An example
+https://learning.oreilly.com/library/view/hands-on-large-language
+Chapter 7
+# Create the ReAct template 
+react_template = """Answer the following questions as best you can. You 
+have access to the following tools: 
+{tools} 
+Use the following format: 
+Question: the input question you must answer 
+Thought: you should always think about what to do 
+Action: the action to take, should be one of [{tool_names}] 
+Action Input: the input to the action 
+Observation: the result of the action 
+... (this Thought/Action/Action Input/Observation can repeat N times) 
+Thought: I now know the final answer 
+Final Answer: the final answer to the original input question 
+Begin! 
+Question: {input} 
+Thought:{agent_scratchpad}""" 
+prompt = PromptTemplate( 
+    template=react_template, 
+    input_variables=["tools", "tool_names", "input", "agent_scratchpad"] 
+) 
+from langchain.agents import load_tools, Tool 
+from langchain.tools import DuckDuckGoSearchResults 
+# You can create the tool to pass to an agent 
+search = DuckDuckGoSearchResults() 
+search_tool = Tool( 
+    name="duckduck", 
+    description="A web search engine. Use this to as a search engine for 
+general queries.", 
+    func=search.run, 
+) 
+# Prepare tools 
+tools = load_tools(["llm-math"], llm=openai_llm) 
+tools.append(search_tool) 
+# create the ReAct agent and pass it to the AgentExecutor
+from langchain.agents import AgentExecutor, create_react_agent 
+# Construct the ReAct agent 
+agent = create_react_agent(openai_llm, tools, prompt) 
+agent_executor = AgentExecutor( 
+    agent=agent, 
+    tools=tools, 
+    verbose=True, 
+    handle_parsing_errors=True 
+) 
+# What is the price of a MacBook Pro? 
+agent_executor.invoke( 
+    { "input": "What is the current price of a MacBook Pro in USD? How 
+much would it cost in EUR if the exchange rate is 0.85 EUR for 1 USD." 
+    } 
+)
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs: Text summarization
+LLMS TO SUMMARIZE TEXT
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text summarization
+OFFICE | FACULTY | DEPARTMENT
+34
+• Summarization by memorization
+• Conversation buffer
+• Windowed conversation buffer
+• Conversation summary
+https://learning.oreilly.com/library/view/hands-on-large-language
+Chapter 7
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text summarization
+OFFICE | FACULTY | DEPARTMENT
+35
+• Text summarization:
+• Understand long 
+passages
+• Reason about contents
+• Collect main points
+• Abstract a fluent and 
+accurate summary
+https://learning.oreilly.com/library/view/natural-language-processing 
+Chapter 6
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text summarization
+OFFICE | FACULTY | DEPARTMENT
+36
+• Text summarization:
+• Abstractive vs extractive 
+summarization
+• Hybrid summarization
+• Domain generalization
+• Generic vs specific
+https://learning.oreilly.com/library/view/natural-language-processing 
+Chapter 6
+Australia has banned DeepSeek from 
+all government devices and systems 
+over what it says is the security risk 
+the Chinese artificial intelligence (AI) 
+startup poses.
+DeepSeek stunned the world in 
+January when it unveiled a chatbot 
+which matched the performance level 
+of US rivals, while claiming it had a 
+much lower training cost.
+Billions of dollars were wiped off stock 
+markets internationally, including in 
+Australia, where stocks tied to AI - 
+such as chipmaker Brainchip - fell 
+sharply overnight.
+The Australian government has 
+insisted the ban is not due to the app's 
+Chinese origins but because of the 
+"unacceptable risk" it poses to 
+national security.
+Abstractive 
+summarization
+Australia has banned DeepSeek from all government 
+devices and systems over what it says is the security risk 
+the Chinese artificial intelligence (AI) startup poses.
+DeepSeek stunned the world in January when it unveiled a 
+chatbot which matched the performance level of US rivals, 
+while claiming it had a much lower training cost.
+Billions of dollars were wiped off stock markets 
+internationally, including in Australia, where stocks tied to 
+AI - such as chipmaker Brainchip - fell sharply overnight.
+The Australian government has insisted the ban is not due 
+to the app's Chinese origins but because of the 
+"unacceptable risk" it poses to national security.
+Australia bans 
+DeepSeek on 
+government devices 
+with security concerns
+Extractive 
+summarization
+Australia has banned DeepSeek from all government 
+devices and systems over what it says is the security risk 
+the Chinese artificial intelligence (AI) startup poses.
+DeepSeek stunned the world in January when it unveiled a 
+chatbot which matched the performance level of US rivals, 
+while claiming it had a much lower training cost.
+Billions of dollars were wiped off stock markets 
+internationally, including in Australia, where stocks tied to 
+AI - such as chipmaker Brainchip - fell sharply overnight.
+The Australian government has insisted the ban is not due 
+to the app's Chinese origins but because of the 
+"unacceptable risk" it poses to national sty.
+Australia bans DeepSeek on 
+government devices over 
+security risk
+Hybrid 
+summarization
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text summarization
+OFFICE | FACULTY | DEPARTMENT
+37
+• Text summarization:
+• Different models may 
+variate summarization
+• Three-sentence summary
+• GPT
+• T5
+• BART
+• PEGASUS
+https://learning.oreilly.com/library/view/natural-language-processing 
+Chapter 6
+# Three-sentence summarization
+def three_sentence_summary(text): return "\n".join(sent_tokenize(text)[:3])
+summaries["baseline"] = three_sentence_summary(sample_text) 
+# GPT2
+from transformers import pipeline, set_seed 
+set_seed(42) 
+pipe = pipeline("text-generation", model="gpt2-xl") 
+gpt2_query = sample_text + "\nTL;DR:\n" 
+pipe_out = pipe(gpt2_query, max_length=512, clean_up_tokenization_spaces=True) 
+summaries["gpt2"] = "\n".join( 
+    sent_tokenize(pipe_out[0]["generated_text"][len(gpt2_query) :])
+) 
+# T5
+pipe = pipeline("summarization", model="t5-large") 
+pipe_out = pipe(sample_text) 
+summaries["t5"] = "\n".join(sent_tokenize(pipe_out[0]["summary_text"])) 
+# BART
+pipe = pipeline("summarization", model="facebook/bart-large-cnn") 
+pipe_out = pipe(sample_text) 
+summaries["bart"] = "\n".join(sent_tokenize(pipe_out[0]["summary_text"])) 
+# PEGASUS
+pipe = pipeline("summarization", model="google/pegasus-cnn_dailymail") 
+pipe_out = pipe(sample_text) 
+summaries["pegasus"] = pipe_out[0]["summary_text"].replace(" .<n>", ".\n")
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs for text summarization
+OFFICE | FACULTY | DEPARTMENT
+38
+https://python.langchain.com/docs/tutorials/summarization/
+• Text summarization
+• Cluster summarization
+• Chunk summarization
+• Distilled summarization
+• Reinforced 
+summarization
+• Summarization with 
+iterative refinement
+• Summarization with 
+retrieval 
+• Summarization with 
+human feedback
+• …
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Take-home Messages
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs enables text processing
+OFFICE | FACULTY | DEPARTMENT
+40
+• LLMs can classify text, analyse sentiment and 
+topics, generate and summarize text
+• Integrating different LLM techniques, external tools
+• AI agents, or AI assistants
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Next week – Week 5
+OFFICE | FACULTY | DEPARTMENT
+41
+• Developing LLMs: 
+• Multimodal LLMs
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Question & Answer

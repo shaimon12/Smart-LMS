@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What is the purpose of prompt engineering in Large Language Models (LLMs)?",
+    "options": {
+      "A": "To generate random prompts",
+      "B": "To fine-tune the model",
+      "C": "To provide clear and precise instructions",
+      "D": "To ignore prompt generation"
+    },
+    "answer": "C"
+  },
+  {
+    "question": "What is the main focus of Chain of Thought prompting in LLMs?",
+    "options": {
+      "A": "Generating random outputs",
+      "B": "Generating intermediate reasoning steps leading to an output",
+      "C": "Ignoring reasoning processes",
+      "D": "Focusing on final outputs only"
+    },
+    "answer": "B"
+  },
+  {
+    "question": "How does Retrieval-Augmented Generation (RAG) differ from traditional language models?",
+    "options": {
+      "A": "It does not involve external knowledge retrieval",
+      "B": "It relies solely on internal model parameters",
+      "C": "It retrieves facts from external resources to feed LLMs",
+      "D": "It does not generate responses"
+    },
+    "answer": "C"
+  },
+  {
+    "question": "What is the key aspect of Reinforcement Learning from Human Feedback (RLHF) in LLMs?",
+    "options": {
+      "A": "Training without any feedback",
+      "B": "Collecting completions by policies",
+      "C": "Ignoring human preferences",
+      "D": "Updating policy parameters without reinforcement"
+    },
+    "answer": "B"
+  },
+  {
+    "question": "What is the purpose of Knowledge Distillation in LLMs?",
+    "options": {
+      "A": "To increase model complexity",
+      "B": "To transfer knowledge from a teacher model to a student model",
+      "C": "To ignore the learning process",
+      "D": "To avoid fine-tuning"
+    },
+    "answer": "B"
+  }
+]

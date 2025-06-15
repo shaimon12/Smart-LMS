@@ -1,0 +1,774 @@
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or has licence to 
+use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Lecture 6 | Date: 04th April 2025 | Prof. Longbing Cao | Www.DataSciences.Org
+COMP 8420 Advanced NLP
+DEVELOPING LLMS: TRAINING AND FINE-TUNING LLMS
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Agenda – This week
+OFFICE | FACULTY | DEPARTMENT
+2
+• Techniques for training and fine-tuning LLMs/MLLMs
+• Prompt engineering
+• Chain of Thoughts
+• Reasoning and learn to reason
+• Retrieval-augmented generation (RAG)
+• Reinforcement learning from human feedback (RLHF)
+• Optimize human preferences
+• Knowledge distillation
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+References
+OFFICE | FACULTY | DEPARTMENT
+3
+• Natural Language Processing with Transformers
+• Hands-on Large Language Models
+• Online resources/public domains
+• The slides may involve materials from online, public domains, 
+and other lectures etc., do not share the slides
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs: Prompt Engineering
+TECHNIQUES AND OVERVIEW
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Prompt engineering
+OFFICE | FACULTY | DEPARTMENT
+5
+• Transformers
+• Instructions 
+without 
+description
+• Clear and precise 
+prompt
+• Role prompt
+Unleashing the potential of prompt engineering in 
+Large Language Models: a comprehensive review: 
+https://arxiv.org/pdf/2310.14735
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Prompt engineering
+OFFICE | FACULTY | DEPARTMENT
+6
+• Transformers
+• Instructions without 
+description
+• Clear and precise 
+prompt
+• Role prompt
+• One-shot prompt
+• Chain of thought
+• Tree of thoughts
+Unleashing the potential of prompt engineering in 
+Large Language Models: a comprehensive review: 
+https://arxiv.org/pdf/2310.14735
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Prompt engineering
+OFFICE | FACULTY | DEPARTMENT
+7
+• Transformers
+• Instructions 
+without 
+description
+• Clear and precise 
+prompt
+• Role prompt
+• One-shot prompt
+• Chain of thought
+• Tree of thoughts
+• Generating 
+knowledge
+Unleashing the potential of prompt engineering in 
+Large Language Models: a comprehensive review: 
+https://arxiv.org/pdf/2310.14735
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Prompt engineering
+OFFICE | FACULTY | DEPARTMENT
+8
+• Transformers
+• Instructions 
+without 
+description
+• Clear and precise 
+prompt
+• Role prompt
+• One-shot prompt
+• Chain of thought
+• Tree of thoughts
+• Generating 
+knowledge
+• Least-to-most 
+prompting
+Unleashing the potential of prompt engineering in 
+Large Language Models: a comprehensive review: 
+https://arxiv.org/pdf/2310.14735
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Prompt engineering
+OFFICE | FACULTY | DEPARTMENT
+9
+• Prompt engineering
+• Prompt learning
+• Auto reasoning and tool usage 
+(ART)
+• Conditional prompt learning
+Unleashing the potential of prompt engineering in 
+Large Language Models: a comprehensive review: 
+https://arxiv.org/pdf/2310.14735
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Prompt engineering
+OFFICE | FACULTY | DEPARTMENT
+10
+• Prompt engineering
+• Prompt learning
+• Auto reasoning and tool 
+usage (ART)
+• Conditional prompt learning
+Exploring Prompt Engineering: A Systematic Review with SWOT Analysis: https://arxiv.org/abs/2410.12843
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs: Chain of Thought
+PROMPTING TO REASONING
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Chain of thought prompting
+OFFICE | FACULTY | DEPARTMENT
+12
+• CoT
+• Generate a series of 
+intermediate reasoning 
+steps leading to output
+• <input, chain of thought, 
+output>
+• Few 
+shots/demonstrations
+• A prompt sentence
+• No gradient update
+• CoT prompting
+• Logical reasoning
+• Commonsense reasoning
+• Symbolic reasoning
+Chain-of-Thought Prompting Elicits Reasoning in Large Language Models: https://arxiv.org/abs/2201.11903
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Chain of thought reasoning
+OFFICE | FACULTY | DEPARTMENT
+13
+• Zero shot CoT
+• Hint: ‘let’s think step by 
+step’
+• Question + hint
+• 1st prompt: extract 
+rationale
+• 2nd prompt: extract 
+answers
+Large Language Models are Zero-Shot Reasoners: https://arxiv.org/abs/2205.11916
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Chain of thought reasoning
+OFFICE | FACULTY | DEPARTMENT
+14
+• Few shot CoT
+• Demonstrations: step-by-
+step reasoning exemplars
+• In-context learning
+• Manual CoT
+https://bcmi.sjtu.edu.cn/~zhangzs/slides/CoT-zhuosheng.pdf
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Chain of thought reasoning
+OFFICE | FACULTY | DEPARTMENT
+15
+• Auto-CoT
+• Manual CoT: unscalable
+• Obtain representative 
+questions to reflect task 
+patterns
+• Obtain rationales to build 
+demonstrations
+https://bcmi.sjtu.edu.cn/~zhangzs/slides/CoT-zhuosheng.pdf
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs: Reasoning & Learn to 
+Reason
+REASONING TO LEARNING
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Learn to reason
+OFFICE | FACULTY | DEPARTMENT
+17
+• Reasoning
+• logically and systematically 
+think about a subject
+• Leverage past experience 
+and evidence for a 
+conclusion
+• Expand understanding and 
+innovation
+• Families of reasoning
+• Logical, causal, multi-hop, 
+commonsense, …
+• Learn to reason
+• OpenAI o1
+GPT-3.5, GPT-4, or BARD? Evaluating LLMs Reasoning 
+Ability in Zero-Shot Setting and Performance Boosting 
+Through Prompts: https://arxiv.org/pdf/2305.12477
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Learn to reason
+OFFICE | FACULTY | DEPARTMENT
+18
+•
+Families of reasoning
+•
+Logical, causal, multi-hop, commonsense, …
+•
+Learn to reason
+•
+OpenAI o1
+•
+Inductive reasoning :
+•
+Bottom-up
+•
+Observations, evidence  infer 
+ general principles or conclusions
+GPT-3.5, GPT-4, or BARD? Evaluating LLMs Reasoning 
+Ability in Zero-Shot Setting and Performance Boosting 
+Through Prompts: https://arxiv.org/pdf/2305.12477
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Learn to reason
+OFFICE | FACULTY | DEPARTMENT
+19
+•
+Families of reasoning
+•
+Logical, causal, multi-hop, 
+commonsense, …
+•
+Learn to reason
+•
+OpenAI o1
+•
+Deductive reasoning
+•
+Top-down approach
+•
+General principles/assumption  
+specific prediction or conclusion
+GPT-3.5, GPT-4, or BARD? Evaluating LLMs Reasoning 
+Ability in Zero-Shot Setting and Performance Boosting 
+Through Prompts: https://arxiv.org/pdf/2305.12477
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Learn to reason
+OFFICE | FACULTY | DEPARTMENT
+20
+•
+Families of reasoning
+•
+Logical, causal, 
+multi-hop, 
+commonsense, …
+•
+Learn to reason
+•
+OpenAI o1
+•
+Abductive reasoning
+•
+Nonmonotomic
+•
+Limited info  most 
+likely hypothesis or 
+explanation
+GPT-3.5, GPT-4, or BARD? Evaluating LLMs Reasoning 
+Ability in Zero-Shot Setting and Performance Boosting 
+Through Prompts: https://arxiv.org/pdf/2305.12477
+There is a patient with these symptoms: fever, cough, and fatigue. The doctors may employ abductive 
+reasoning to reach a potential diagnosis. They might consider various hypotheses, such as a common cold, 
+influenza, or pneumonia. They evaluate the available evidence, including the patient’s medical history, 
+physical examination, and any lab tests. By analyzing the symptoms and considering the most likely 
+explanation, the doctors abductively reason towards a diagnosis that best fits the observed data.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Learn to reason
+OFFICE | FACULTY | DEPARTMENT
+21
+• Families of reasoning
+• Logical, causal, 
+multi-hop, 
+commonsense, …
+• Learn to reason
+• OpenAI o1
+• Mathematical reasoning
+• Non-textual 
+semantic reasoning
+• Use logic or maths 
+principles to draw 
+conclusions or 
+solutions to 
+problems
+GPT-3.5, GPT-4, or BARD? Evaluating LLMs Reasoning 
+Ability in Zero-Shot Setting and Performance Boosting 
+Through Prompts: https://arxiv.org/pdf/2305.12477
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Learn to reason
+OFFICE | FACULTY | DEPARTMENT
+22
+•
+Families of reasoning
+•
+Logical, causal, multi-hop, 
+commonsense, …
+•
+Learn to reason
+•
+OpenAI o1
+•
+Commonsense reasoning
+•
+Commonsense knowledge
+•
+Understanding of the world
+•
+Information  informed 
+decisions or judgements
+GPT-3.5, GPT-4, or BARD? Evaluating LLMs Reasoning 
+Ability in Zero-Shot Setting and Performance Boosting 
+Through Prompts: https://arxiv.org/pdf/2305.12477
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Learn to reason
+OFFICE | FACULTY | DEPARTMENT
+23
+•
+Families of reasoning
+•
+Logical, causal, multi-hop, 
+commonsense, …
+•
+Learn to reason
+•
+OpenAI o1
+•
+Causal reasoning
+•
+Cause-effect relationship
+•
+Variables/events  
+variables/events
+GPT-3.5, GPT-4, or BARD? Evaluating LLMs Reasoning 
+Ability in Zero-Shot Setting and Performance Boosting 
+Through Prompts: https://arxiv.org/pdf/2305.12477
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Learn to reason
+OFFICE | FACULTY | DEPARTMENT
+24
+•
+Families of reasoning
+•
+Logical, causal, multi-hop, 
+commonsense, …
+•
+Learn to reason
+•
+OpenAI o1
+•
+Multi-hop reasoning
+•
+A process
+•
+Source or data 1 + Source 
+or data 2 …  conclusion 
+or answer
+GPT-3.5, GPT-4, or BARD? Evaluating LLMs Reasoning 
+Ability in Zero-Shot Setting and Performance Boosting 
+Through Prompts: https://arxiv.org/pdf/2305.12477
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs: Retrieval-Augmented 
+Generation
+INVOLVING EXTERNAL KNOWLEDGE
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Retrieval augmented generation: RAG
+OFFICE | FACULTY | DEPARTMENT
+26
+• LLMs: 
+• knowledge in model parameters, 
+• close-book exam
+• Information retrieval: knowledge in 
+external KB/DB, index
+• RAG: 
+• Reaccess training data, external 
+data
+• Open-book exam
+• Retrieve facts from an external 
+resources to feed LLMs
+• retrieve & generate/response
+• Up-to-date info
+• Accurate for tasks
+• User insight into generation
+• Retrieval 
+• Explicit knowledge
+•
+Explicit knowledge
+https://lemaoliu.github.io/retrieval-generation-tutorial/assets/slides/retrieval4lm.pdf
+Generalization through memorization: Nearest neighbor language models. ICLR 2020
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Retrieval augmented generation: RAG
+OFFICE | FACULTY | DEPARTMENT
+27
+• Learn to retrieve
+https://lemaoliu.github.io/retrieval-generation-tutorial/assets/slides/retrieval4lm.pdf
+Generalization through memorization: Nearest neighbor language models. ICLR 2020
+•
+Learn the knowledge
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Retrieval augmented generation: RAG
+OFFICE | FACULTY | DEPARTMENT
+28
+• Prompting with RAG
+• Prompt template with 
+placeholders
+System: You are a friendly chatbot assistant that responds in a conversational manner to user's 
+questions. Respond in short but complete answers unless specifically asked by the user to 
+elaborate on something. Use History and Context to inform your answers. 
+--- 
+History: [{"role": "assistant", "message": "Hi! How can I help you?"}] 
+--- 
+Context: [Document(page_content='Meta AI researchers introduced a method called [Retrieval 
+Augmented Generation](https://ai.facebook.com/blog/retrieval-augmented-generation-
+streamlining-the-creation-of-intelligent-natural-language-processing-models/) (RAG) to address 
+such knowledge-intensive tasks. RAG combines an information retrieval component with a text 
+generator model. RAG can be fine-tuned and its internal knowledge can be modified in an 
+efficient manner and without needing retraining of the entire model.', metadata={'source': 
+'https://www.promptingguide.ai/techniques/rag', 'title': 'Retrieval Augmented Generation (RAG)'})] 
+--- 
+User: What is RAG? 
+https://stackoverflow.blog/2023/10/18/retrieval-
+augmented-generation-keeping-llms-relevant-and-current/
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Retrieval augmented generation: RAG
+OFFICE | FACULTY | DEPARTMENT
+29
+•
+Retrieve facts from an external resources to feed 
+LLMs
+•
+Function: retrieve & generate/response
+•
+Timeliness: Up-to-date info
+•
+Accuracy: Accurate for tasks
+•
+Personalization: User insight into 
+generation
+•
+Professionalism: domain knowledge
+•
+Explainability: references to prediction
+•
+Dos 
+•
+Latest, compliant info
+•
+Specific task, domain, etc
+•
+Accurate, factual
+•
+Hallucinations: verifiable evidence
+•
+Trust and transparency: sourcing info
+•
+Don’ts
+•
+Creative tasks: overkill on retrieved info
+•
+Limited resources: overburden complexity
+•
+Real-time response: overload 
+speed/efficiency Retrieval Augmented Generation (RAG) and Beyond: A Comprehensive Survey on How to Make your LLMs use External Data More Wisely: https://arxiv.org/abs/2409.14924
+RAG and RAU-A Survey on Retrieval-Augmented Language Model in Natural Language Processing: https://arxiv.org/abs/2404.19543
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs: Reinforcement 
+Learning from Human 
+Feedback (RLHF)
+INVOLVING HUMAN INTELLIGENCE
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Reinforcement Learning from Human 
+Feedback : RLHF
+OFFICE | FACULTY | DEPARTMENT
+31
+• Reinforcement Learning (RL)
+• RL model
+• RL for language
+• RLHF 
+Retrieval Augmented Generation (RAG) and Beyond: A Comprehensive Survey on How to Make your LLMs use External Data More Wisely: https://arxiv.org/abs/2409.14924
+RAG and RAU-A Survey on Retrieval-Augmented Language Model in Natural Language Processing: https://arxiv.org/abs/2404.19543
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+RLHF
+OFFICE | FACULTY | DEPARTMENT
+32
+• RL models for language modeling
+Retrieval Augmented Generation (RAG) and Beyond: A Comprehensive Survey on How to Make your LLMs use External Data More Wisely: https://arxiv.org/abs/2409.14924
+RAG and RAU-A Survey on Retrieval-Augmented Language Model in Natural Language Processing: https://arxiv.org/abs/2404.19543
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+RLHF
+OFFICE | FACULTY | DEPARTMENT
+33
+• RL with proximal policy optimization 
+(PPO)
+• Collect completions by policies
+• Compute reward from 
+preference model
+• Update policy parameters θ
+• Update value function φ
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+RLHF
+OFFICE | FACULTY | DEPARTMENT
+34
+• RL models for language modeling
+Learning to summarize with human feedback: https://arxiv.org/abs/2009.01325
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+RLHF
+OFFICE | FACULTY | DEPARTMENT
+35
+• Fine tuning with RL 
+• Initial language model
+• Prompting  tuned language 
+model
+• Reward (preference) model
+• Update policy
+• KL penalty constrains the RL fine-
+tuning to fool the reward model and 
+output gibberish
+https://icml.cc/media/icml-2023/Slides/21554.pdf
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+RLHF
+OFFICE | FACULTY | DEPARTMENT
+36
+• Fine tuning with RL 
+• Initial language model
+• Prompting  tuned language 
+model
+• Reward (preference) model φ
+https://icml.cc/media/icml-2023/Slides/21554.pdf
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+RLHF
+OFFICE | FACULTY | DEPARTMENT
+37
+• Fine tuning with RL 
+• Initial language model
+• Prompting  tuned language 
+model
+• Reward (preference) model
+• Update policy θ
+• Policy gradient updates policy LM 
+directly
+• Often some policy parameters are 
+frozen 
+https://icml.cc/media/icml-2023/Slides/21554.pdf
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+RLHF
+OFFICE | FACULTY | DEPARTMENT
+38
+• InstructGPT
+• Instruction tuning
+• Maximize reward
+https://arxiv.org/abs/2203.02155
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+RLHF from human preferences
+OFFICE | FACULTY | DEPARTMENT
+39
+• Rate or model human preferences
+• Ask for human preferences: 
+direct human preference ratings
+• Learn human preferences: 
+relevant, effective preferences
+• Pairwise comparison of preferences
+https://web.stanford.edu/class/cs224n/slides/cs
+224n-spr2024-lecture10-prompting-rlhf.pdf
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs: Knowledge Distillation
+TRANSFER KNOWLEDGE
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Knowledge/model distillation
+OFFICE | FACULTY | DEPARTMENT
+41
+• Knowledge/model distillation
+•
+Transfer knowledge from teacher to 
+student, replicate outputs and emulate 
+thought/reasoning processes
+•
+Knowledge: parameters, input-output 
+mapping relationships, reasoning 
+processes
+•
+A teacher/large model: large, pretrained 
+with soft targets, probabilities or logits 
+(not hard targets/labels)
+•
+A student/small/distilled model: 
+smaller, more efficient to mimic teacher 
+predictions with soft targets for training
+•
+Compress and transfer knowledge from 
+the teacher to the student (correct 
+answers, relationships etc in teacher)
+•
+Same or improved learning performance 
+(better generalization)
+•
+More efficient (smaller size, less complex, 
+faster inference/training, deployment)
+•
+Privacy-preserving (no original training 
+data but transfer set)
+Distilling the Knowledge in a Neural Network
+Knowledge Distillation: A Survey
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Knowledge/model distillation
+OFFICE | FACULTY | DEPARTMENT
+42
+• Knowledge/model distillation
+• Knowledge/soft targets
+•
+Response-based knowledge: info 
+from the final output layer of 
+teacher, student predictions match 
+the teacher’s
+•
+Feature-based knowledge: info 
+from intermediate/hidden layers, 
+minimize feature activations
+•
+Relation-based knowledge:  
+relations between layers or feature 
+maps, reasoning similarity
+Knowledge Distillation: A Survey
+Response-based:
+Feature-based:
+Relation-based:
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Knowledge/model distillation
+OFFICE | FACULTY | DEPARTMENT
+43
+• Knowledge/model distillation
+• Structure, process and impact
+•
+Offline distillation: fixed teacher 
+model
+•
+Online distillation: simultaneously 
+train teacher and student
+•
+Self-distillation: transfer from 
+deeper layers to shallow layers
+A Survey on Knowledge Distillation of Large Language Models
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Knowledge/model distillation
+OFFICE | FACULTY | DEPARTMENT
+44
+• Knowledge/model distillation
+• Knowledge elicitation
+•
+Labelling
+•
+Features
+•
+Feedback
+•
+Self-knowledge
+•
+Data curation
+• Knowledge distillation
+•
+Supervised fine-tuning
+•
+Divergence
+•
+Similarity
+•
+Reinforcement learning
+•
+Rank optimization
+A Survey on Knowledge Distillation of Large Language Models
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Knowledge/model distillation
+OFFICE | FACULTY | DEPARTMENT
+45
+• Knowledge/model distillation
+• LLMs
+• Multilingual LLMs: multiple 
+teachers/languages for a 
+student, cotraining 
+languages for similar 
+embeddings
+• Dataset generation for 
+instruction tuning of 
+student: Orca from GPT-4
+• Rank and augment student: 
+by teacher’s preferences, 
+alignment settings, eg RLHF
+A Survey on Knowledge Distillation of Large Language Models
+Orca: Progressive Learning from Complex Explanation Traces of GPT-4
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Take-home Messages
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs require various techniques
+OFFICE | FACULTY | DEPARTMENT
+47
+• Prompting, reasoning, feeding back, … 
+• Retrieval expand the knowledge and efficiency
+• Human in the loop  human-centered
+• Instruction and fine-tuning 
+• Feedback and preference for vertical tasking
+• Distilling knowledge
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Next week – Week 7
+OFFICE | FACULTY | DEPARTMENT
+48
+• Developing MLLMs 
+• Humanoid AI and robots
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Question & Answer

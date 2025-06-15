@@ -1,0 +1,521 @@
+# COMP8420 Advanced Natural Language Processing
+## Week 11 - Vectors and Matrices in NLP
+
+## **Today's Topics**
+
+- **Embedding Vectors**: Representations of words, sentences, and concepts  
+   - Static Embeddings (Word2Vec, GloVe)  
+
+- **Vector Arithmetic and Semantic Relationships**  
+
+- **Cross-Model Alignment**  
+   - Mapping between Word2Vec and GloVe  
+
+- **Beyond Static Embeddings**  
+  - Contexual Embeddings (e.g., BERT)  
+
+- **Assignment 3 Q&A (1 hour)**
+
+Vectors and matrices are foundational to modern NLP.
+
+If we think of a model as reasoning like a human:
+- **Embedding vectors** are like *words* — they encode meaning in a form the model can manipulate.
+- **Weight matrices** are like the *brain* — they transform and interpret those representations.
+
+#### 1. Embedding Vectors
+
+A key challenge in early NLP was how to **represent words as numbers** that models could process.
+
+Early approaches — like **one-hot**, **bag-of-words**, and **TF-IDF** — came from traditional machine learning and information retrieval.   
+While simple, these methods produced **sparse**, **high-dimensional vectors** with limited semantic meaning.
+
+This motivated the development of **dense representations** that capture semantic meaning — what we call **embeddings**.
+
+<center>
+    <img src="https://media.licdn.com/dms/image/v2/C4D12AQF-nRJTdXKmAQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1520226316610?e=1753315200&v=beta&t=CgeebwLLLcRMmJbwQC2NC8e482TIBCJBrZEKt4bXMQo" width="70%">
+</center>
+
+Word embeddings capture semantic patterns through consistent vector offsets.   
+source: https://www.linkedin.com/pulse/word2vec-word-embeddings-used-nlp-vijay-ram/
+
+#### Static Embeddings
+
+Early work on word representation aimed to learn **fixed embeddings** — one vector per word — inspired by the linguistic insight from [J.R. Firth](https://en.wikipedia.org/wiki/John_Rupert_Firth):
+
+> *“You shall know a word by the company it keeps.”*
+
+A landmark method built on this idea is **Word2Vec**, which learns word meaning from context.   
+It was first introduced in a [ICLR workshop paper](https://arxiv.org/pdf/1301.3781) and later formalized in the [NeurIPS 2013 paper](https://proceedings.neurips.cc/paper_files/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf).   
+Word2Vec received the **[NeurIPS 2023 Test-of-Time Award](https://neurips.cc/virtual/2023/test-of-time/83333)** for its lasting impact.
+
+<center>
+    <img src="https://raw.githubusercontent.com/weijun-l/comp8420-25s1/main/assets/word2vec.png" width="80%">
+</center>
+
+!pip install --upgrade gensim
+
+# A runtime restart is required after installing Gensim (as Gensim only supports numpy < 2.0)!
+# In Colab, installing Gensim may downgrade NumPy, causing a mismatch between
+# the in-memory and on-disk versions — which can lead to import errors.
+# For background: https://github.com/piskvorky/gensim/issues/3605
+
+import os
+os.kill(os.getpid(), 9)  # Force runtime restart
+
+Load the embedding model (you can try both Word2Vec, or a small variant [GloVe](https://aclanthology.org/D14-1162/)):
+
+import numpy as np
+import gensim.downloader as api
+
+# Load a small GloVe model (50-dimensional vectors trained on Wikipedia + Gigaword)
+embed_model = api.load('glove-wiki-gigaword-50')
+
+# Optional: Load the original Word2Vec model (300-dimensional vectors trained on Google News)
+# embed_model = api.load('word2vec-google-news-300')
+
+## Basic Information of Static Embeddings
+vocab = list(embed_model.key_to_index.keys())
+
+print(f"Vocabulary size: {len(vocab)}")
+print(f"Print some words in the vocab: {vocab[100:105]}")
+print(f"Embedding dimension: {embed_model.vector_size}")
+print('The first 5 elements of a random word embedding: \n', embed_model['what'][:5])
+
+#### 2. Vector Arithmetic and Semantic Relationships
+
+A well-known example from the original **Word2Vec** paper demonstrates that certain arithmetic operations hold in the embedding space:
+
+$v_{king} - v_{man} + v_{woman} \approx v_{queen}$
+
+Let’s test whether this relationship holds in practice!
+
+king_vec = embed_model['king']
+queen_vec = embed_model['queen']
+man_vec = embed_model['man']
+woman_vec = embed_model['woman']
+
+print('The length of embedding vector is: ', len(king_vec))
+print('The first 5 elements of the word "king" embedding vector is: \n', king_vec[:5])
+
+result_vec = king_vec - man_vec + woman_vec
+
+# Calculate cosine similarity of two vectors
+def cosine_similarity_np(vec1, vec2):
+    return np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))
+
+sim_np = cosine_similarity_np(result_vec, queen_vec)
+print(f"Cosine similarity between (king-man+woman) and (queen): {sim_np:.4f}")
+
+result = embed_model.most_similar(positive=['king', 'woman'], negative=['man'], topn=5)
+result
+
+We can try more examples:
+
+result = embed_model.most_similar(positive=['paris', 'italy'], negative=['france'], topn=5)
+print("paris - france + italy ≈")
+for word, score in result:
+    print(f"  {word}: {score:.4f}")
+
+Feel free to create and explore your own innovative examples!
+
+
+
+#### 💡 Note on Embedding Bias
+
+result = embed_model.most_similar(positive=['doctor', 'woman'], negative=['man'], topn=3)
+print("doctor - man + woman ≈")
+for word, score in result:
+    print(f"  {word}: {score:.4f}")
+
+
+
+The result `doctor - man + woman ≈ nurse` reveals gender bias in word2vec or glove embeddings. These models capture stereotypical associations from their training data, reflecting societal biases where certain professions were historically gender-typed.
+
+#### Visualization of Word Relationships
+
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+
+countries = ['France', 'Germany', 'Italy', 'Russia', 'China', 'Japan','Greece']
+capitals = ['Paris', 'Berlin', 'Rome', 'Moscow', 'Beijing', 'Tokyo', 'Athens']
+country_capital_pairs = list(zip(countries, capitals))
+
+def extract_word_embeddings(word_pairs, embed_model):
+    vectors_list, valid_words, pair_indices = [], [], []
+    for i, word in enumerate([w for pair in word_pairs for w in pair]):
+        word_lower = word.lower()
+        if word_lower in embed_model:
+            vectors_list.append(embed_model[word_lower])
+            valid_words.append(word)
+            pair_indices.append(i // 2)
+        else:
+            print(f"Warning: '{word}' not found in vocabulary")
+    return vectors_list, valid_words, pair_indices
+
+def plot_pca_visualization(vectors_list, valid_words, pair_indices, title):
+    if not vectors_list or len(vectors_list) < 2: return
+
+    result = PCA(n_components=2).fit_transform(vectors_list)
+    plt.figure(figsize=(8, 5))
+    plt.scatter(result[:, 0], result[:, 1], c='lightblue', s=80)
+    for i, word in enumerate(valid_words):
+        plt.annotate(word, xy=result[i], xytext=(5, 2), textcoords='offset points', fontsize=12)
+
+    pairs = {}
+    for i, idx in enumerate(pair_indices):
+        pairs.setdefault(idx, []).append(i)
+    for a, b in (v for v in pairs.values() if len(v) == 2):
+        plt.plot(result[[a, b], 0], result[[a, b], 1], 'k-', alpha=0.5)
+
+    plt.title(title, fontsize=14)
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.show()
+
+def visualize_word_relationships(word_pairs, title, embed_model):
+    vectors, words, indices = extract_word_embeddings(word_pairs, embed_model)
+    plot_pca_visualization(vectors, words, indices, title)
+
+visualize_word_relationships(country_capital_pairs, "Country-Capital Relationships", embed_model)
+
+#### 💡 Reflection
+
+- What patterns do you identify in this plot?
+  - Similar directional relationships between each pair.
+  - Geographically related countries cluster together in the embedding space.
+
+workplace_pairs = [('doctor', 'hospital'), ('student', 'school'),  ('scientist', 'laboratory'), ('astronaut', 'space'), ('engineer', 'factory'),  ('librarian', 'library')]
+visualize_word_relationships(workplace_pairs, "Profession-Workplace Relationships", embed_model)
+
+habitat_pairs = [('fish', 'water'), ('camel', 'desert'), ('bear', 'forest'), ('penguin', 'antarctica'), ('wolf', 'woods')]
+visualize_word_relationships(habitat_pairs, "Animal-Habitat Relationships", embed_model)
+
+Static word embeddings also have limitations!
+
+They cannot represent multiple meanings of words, limiting their ability to capture contextual nuances in language.
+
+# Words related to different senses of "bank"
+financial_terms = ["money", "loan", "deposit", "account", "savings", "teller", "credit"]
+river_terms = ["river", "shore", "stream", "water", "fishing", "flow", "sand"]
+
+def visualize_polysemy(word, related_terms, embed_model, categories):
+    words = [word] + related_terms
+    labels = ["polysemous"] + categories
+    vectors, valid_words, categories_map = [], [], {}
+
+    for term, label in zip(words, labels):
+        term_lc = term.lower()
+        if term_lc in embed_model:
+            vectors.append(embed_model[term_lc])
+            valid_words.append(term)
+            categories_map[term] = label
+        else:
+            print(f"Warning: '{term}' not found in vocabulary")
+
+    result = PCA(n_components=2).fit_transform(vectors)
+    colors = {"polysemous": "red", "financial": "blue", "river": "green"}
+
+    plt.figure(figsize=(8, 5))
+    for i, word in enumerate(valid_words):
+        cat = categories_map[word]
+        plt.scatter(*result[i], c=colors[cat], marker='*' if cat == "polysemous" else 'o', s=200 if cat == "polysemous" else 100)
+        plt.annotate(word, xy=result[i], xytext=(5, 2), textcoords='offset points', fontsize=12)
+
+    for cat, col in colors.items():
+        plt.scatter([], [], c=col, marker='*' if cat == "polysemous" else 'o', label=f"{cat.capitalize()} terms")
+
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.show()
+
+# Create category labels for each term
+categories = ["financial"] * len(financial_terms) + ["river"] * len(river_terms)
+
+# Visualize
+visualize_polysemy("bank", financial_terms + river_terms, embed_model, categories)
+
+#### 3. Cross-Model Alignment
+
+Both Word2Vec and GloVe aim to capture the semantic meaning of words, but they are trained on different corpora and with different learning method. This raises an interesting question:
+
+> Do they encode **similar semantic knowledge**, and can one embedding space be mapped to the other?
+
+To explore this, we investigate two key questions:
+
+1. **Does there exist a general transformation matrix** \( W \) that maps Word2Vec embeddings to GloVe embeddings?
+2. **If we apply this transformation to a Word2Vec vector**, will the result be semantically aligned with the corresponding GloVe vector?
+
+We'll explore this through a simple linear alignment experiment.
+
+<center>
+    <img src="https://raw.githubusercontent.com/weijun-l/comp8420-25s1/main/assets/vec_align.png" width="80%">
+</center>
+
+Let’s work through this step by step.
+
+import numpy as np
+import gensim.downloader as api
+from sklearn.preprocessing import normalize
+
+# Load pre-trained embedding models
+glove = api.load('glove-wiki-gigaword-50')         # 50-dim
+word2vec = api.load('word2vec-google-news-300')    # 300-dim
+
+We aim to find a transformation matrix \( W \) such that:
+
+$
+E_g \approx E_w W
+$
+
+This leads to a linear regression problem:
+
+$
+W^* = \arg\min_W \| E_w W - E_g \|_F^2
+$
+
+It has a closed-form solution:
+
+$
+W = (E_w^\top E_w)^{-1} E_w^\top E_g
+$
+
+In practice, we can use NumPy's least-squares solver:
+```python
+W, residuals, _, _ = np.linalg.lstsq(E_w, E_g, rcond=None)
+
+
+# Find common vocabulary
+common_words = [w for w in word2vec.index_to_key[:5000] if w in glove][:500]
+print(f"{len(common_words)} common words selected.")
+
+# Construct aligned embedding matrices
+E_w = np.array([word2vec[w] for w in common_words])  # shape: (500, 300)
+E_g = np.array([glove[w]    for w in common_words])  # shape: (500, 50)
+
+# Normalize rows to unit length
+E_w = normalize(E_w, axis=1)
+E_g = normalize(E_g, axis=1)
+
+# Solve for transformation matrix W such that: E_g ≈ E_w @ W
+W, residuals, _, _ = np.linalg.lstsq(E_w, E_g, rcond=None)
+print(f"W shape: {W.shape}, residual sum of squares: {residuals.sum():.4f}")
+
+Now let's test how well this learned transformation generalizes.
+
+We'll apply the matrix \( W \) to a Word2Vec vector and compare it to the true GloVe vector of the same word.
+
+We will also look at the top similar words in GloVe space based on this projection.
+
+
+def most_similar_in_glove(vec, model, top_n=5, exclude=None):
+    """Find top-N GloVe words closest to the input vector."""
+    vec = vec / np.linalg.norm(vec)
+    exclude = set(exclude or [])
+
+    sims = [
+        (w, np.dot(vec, model[w] / np.linalg.norm(model[w])))
+        for w in model.index_to_key[:100000] if w not in exclude
+    ]
+    return sorted(sims, key=lambda x: -x[1])[:top_n]
+
+def evaluate_projection(word, word2vec, glove, W, top_n=5):
+    """Evaluate how well a projected Word2Vec vector matches the true GloVe vector."""
+    print(f"{word} in training set: {word in common_words}" )
+    if word not in word2vec or word not in glove:
+        print(f"'{word}' not found in both vocabularies.")
+        return
+
+    # Get original vectors
+    v_w2v = word2vec[word]
+    v_glove_true = glove[word]
+
+    # Project Word2Vec vector into GloVe space
+    v_proj = v_w2v @ W
+
+    # Compute cosine similarity between projected and true GloVe
+    cos_sim = np.dot(v_proj / np.linalg.norm(v_proj), v_glove_true / np.linalg.norm(v_glove_true))
+
+    print(f"\nWord: {word}")
+    print(f"Cosine similarity (projected vs true): {cos_sim:.4f}")
+
+    # Show most similar words from projected and true GloVe vectors
+    print("Top similar in GloVe (projected):")
+    for i, (w, s) in enumerate(most_similar_in_glove(v_proj, glove, exclude=[word])):
+        print(f"  {i+1}. {w}: {s:.4f}")
+
+    print("Top similar in GloVe (true vector):")
+    for i, (w, s) in enumerate(most_similar_in_glove(v_glove_true, glove, exclude=[word])):
+        print(f"  {i+1}. {w}: {s:.4f}")
+
+evaluate_projection('man', word2vec, glove, W)
+
+evaluate_projection('woman', word2vec, glove, W)
+
+evaluate_projection('computer', word2vec, glove, W)
+
+evaluate_projection('good', word2vec, glove, W)
+
+evaluate_projection('bad', word2vec, glove, W)
+
+## You can try any words you want
+evaluate_projection('...', word2vec, glove, W)
+
+#### 💡 Reflection
+
+How well do the projected vectors align with their GloVe counterparts?
+
+Does this suggest that Word2Vec and GloVe encode **compatible semantic spaces**?
+
+Let’s push further and test whether **arithmetic relationships** — such as analogies — are preserved under this transformation.
+
+def evaluate_analogy(w1, w2, w3, word2vec, glove, W, top_n=5):
+    """
+    Evaluate the analogy: w1 : w2 :: w3 : ?
+    Compare predicted result from projected Word2Vec and direct GloVe analogy.
+    """
+    if any(w not in word2vec or w not in glove for w in [w1, w2, w3]):
+        print(f"Missing word(s) in vocabulary: {w1}, {w2}, or {w3}")
+        return
+
+    # Projected Word2Vec analogy: (w3 + (w2 - w1)) @ W
+    analogy_vec_proj = (word2vec[w3] + (word2vec[w2] - word2vec[w1])) @ W
+
+    # Direct GloVe analogy: w3 + (w2 - w1)
+    analogy_vec_glove = glove[w3] + (glove[w2] - glove[w1])
+
+    print(f"\nAnalogy: {w1} : {w2} :: {w3} : ?")
+
+    print("Predicted via projected Word2Vec:")
+    for i, (w, s) in enumerate(most_similar_in_glove(analogy_vec_proj, glove, top_n, exclude=[w1, w2, w3])):
+        print(f"  {i+1}. {w}: {s:.4f}")
+
+    print("Direct analogy in GloVe:")
+    for i, (w, s) in enumerate(most_similar_in_glove(analogy_vec_glove, glove, top_n, exclude=[w1, w2, w3])):
+        print(f"  {i+1}. {w}: {s:.4f}")
+
+evaluate_analogy("man", "woman", "king", word2vec, glove, W)
+
+#### 4. Beyond Static Embeddings - Contexual Embeddings
+
+In this section, we explored the semantic alignment between two **static embedding models** — Word2Vec and GloVe — where each word is represented by a single fixed vector.
+
+But modern models like **BERT** and **GPT-2** generate **contextual embeddings**, meaning the vector for a word depends on the sentence it appears in.
+
+This raises new questions:
+
+- Do arithmetic operations like `king - man + woman ≈ queen` still work in these models?
+- Can we find consistent transformations between different contextual models?
+
+Let’s explore perform the same analogy calculation using BERT’s **input embedding matrix**, before any context is added.
+
+from transformers import AutoTokenizer, AutoModel
+import torch
+import torch.nn.functional as F
+
+# Load BERT model and tokenizer
+tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+model = AutoModel.from_pretrained("bert-base-uncased")
+embedding_matrix = model.embeddings.word_embeddings.weight.data  # [30522, 768]
+
+# Helper: get embedding by token string
+def get_input_embedding(token_str):
+    token_id = tokenizer.convert_tokens_to_ids(token_str)
+    return embedding_matrix[token_id]
+
+# Tokens to compare
+tokens = ["king", "man", "woman", "queen"]
+vec_king = get_input_embedding("king")
+vec_man = get_input_embedding("man")
+vec_woman = get_input_embedding("woman")
+vec_queen = get_input_embedding("queen")
+
+# Analogy vector
+analogy_vec = vec_king - vec_man + vec_woman
+cos_sim = F.cosine_similarity(analogy_vec, vec_queen, dim=0)
+
+print(f"Cosine similarity (king - man + woman vs. queen): {cos_sim:.4f}")
+
+analogy_vec = F.normalize(analogy_vec.unsqueeze(0), dim=1)  # shape: (1, 768)
+
+# Normalize entire embedding matrix
+embedding_norm = F.normalize(embedding_matrix, dim=1)  # shape: (vocab_size, 768)
+
+# Compute cosine similarity with all tokens
+cosine_scores = torch.matmul(analogy_vec, embedding_norm.T).squeeze(0)  # shape: (vocab_size,)
+
+# Exclude the original words: king, man, woman
+exclude_tokens = {"king", "man", "woman"}
+exclude_ids = set(tokenizer.convert_tokens_to_ids(tok) for tok in exclude_tokens)
+
+# Mask excluded tokens
+mask = torch.ones_like(cosine_scores, dtype=torch.bool)
+for idx in exclude_ids:
+    mask[idx] = False
+
+# Apply mask and get top-k
+filtered_scores = cosine_scores[mask]
+filtered_indices = torch.arange(len(cosine_scores))[mask]
+
+top_k = 5
+top_scores, top_pos = torch.topk(filtered_scores, k=top_k)
+top_indices = filtered_indices[top_pos]
+top_tokens = [tokenizer.convert_ids_to_tokens(idx.item()) for idx in top_indices]
+
+# Print results
+print("Top-5 tokens most similar to (king - man + woman), excluding input words:")
+for i, (token, score) in enumerate(zip(top_tokens, top_scores)):
+    print(f"  {i+1}. {token}: {score:.4f}")
+
+Now we compute contextualized embeddings from BERT's **last hidden layer**, extracted from a sentence containing all four words.
+
+This gives us a more realistic view of how analogy behaves in **true contextual settings**.
+
+# Input sentence containing all 4 words
+sentence = "The king spoke to the man and the woman before meeting the queen."
+tokens = tokenizer(sentence, return_tensors="pt")
+output = model(**tokens)
+
+last_hidden = output.last_hidden_state.squeeze(0)  # shape: [seq_len, hidden_dim]
+input_ids = tokens["input_ids"].squeeze(0)
+tokens_decoded = tokenizer.convert_ids_to_tokens(input_ids)
+
+# Locate token indices
+def get_token_index(token_str):
+    for i, tok in enumerate(tokens_decoded):
+        if tok == token_str:
+            return i
+    raise ValueError(f"Token '{token_str}' not found.")
+
+ix_king = get_token_index("king")
+ix_man = get_token_index("man")
+ix_woman = get_token_index("woman")
+ix_queen = get_token_index("queen")
+
+# Contextual embeddings
+vec_king = last_hidden[ix_king]
+vec_man = last_hidden[ix_man]
+vec_woman = last_hidden[ix_woman]
+vec_queen = last_hidden[ix_queen]
+
+# Analogy
+analogy_vec = vec_king - vec_man + vec_woman
+cos_sim = F.cosine_similarity(analogy_vec, vec_queen, dim=0)
+
+print(f"Cosine similarity (contextual king - man + woman vs. queen): {cos_sim:.4f}")
+
+#### 💭 Reflection
+
+In contextual models like BERT and GPT-2, embeddings are dynamic — the same word may have different vectors depending on its context.
+
+While basic arithmetic still works to some extent, there’s still much to explore.
+- Can contextual embeddings be aligned across models?
+- Can relations be extracted consistently?
+
+We leave these questions open for you to explore!
+
+## **This workshop has helped you:**
+- Explain the difference between **static** and **contextual** embeddings.
+- Perform **embedding arithmetic** and interpret vector analogies.
+- Visualize and analyze **semantic relationships** in embedding space.
+- Reflect on the limitations of static embeddings and explore the role of **contextual models** like BERT.

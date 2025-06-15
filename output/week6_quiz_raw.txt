@@ -1,0 +1,34 @@
+1. What is the focus of the lecture on developing LLMs? 
+A. Data visualization techniques
+B. Training and fine-tuning LLMs
+C. Software development best practices
+D. Hardware optimization strategies
+Answer: B
+
+2. Which technique is NOT mentioned in the agenda for this week's lecture?
+A. Prompt engineering
+B. Chain of Thoughts
+C. Image recognition algorithms
+D. Retrieval-augmented generation
+Answer: C
+
+3. What is emphasized in prompt engineering for Large Language Models?
+A. Complex and ambiguous prompts
+B. Instructions without any description
+C. Vague and unclear prompts
+D. Clear and precise prompts
+Answer: D
+
+4. Which of the following is NOT a component of prompt engineering discussed in the lecture?
+A. Role prompt
+B. One-shot prompt
+C. Chain of thought
+D. Tree of thoughts
+Answer: B
+
+5. Where can students find a comprehensive review on the potential of prompt engineering in Large Language Models?
+A. University library
+B. Lecture slides
+C. Online resources/public domains
+D. Personal notes
+Answer: C

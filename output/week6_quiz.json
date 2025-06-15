@@ -1,0 +1,52 @@
+[
+  {
+    "question": "1. What is the focus of the lecture on developing LLMs?",
+    "options": {
+      "A": "Data visualization techniques",
+      "B": "Training and fine-tuning LLMs",
+      "C": "Software development best practices",
+      "D": "Hardware optimization strategies"
+    },
+    "answer": "B"
+  },
+  {
+    "question": "2. Which technique is NOT mentioned in the agenda for this week's lecture?",
+    "options": {
+      "A": "Prompt engineering",
+      "B": "Chain of Thoughts",
+      "C": "Image recognition algorithms",
+      "D": "Retrieval-augmented generation"
+    },
+    "answer": "C"
+  },
+  {
+    "question": "3. What is emphasized in prompt engineering for Large Language Models?",
+    "options": {
+      "A": "Complex and ambiguous prompts",
+      "B": "Instructions without any description",
+      "C": "Vague and unclear prompts",
+      "D": "Clear and precise prompts"
+    },
+    "answer": "D"
+  },
+  {
+    "question": "4. Which of the following is NOT a component of prompt engineering discussed in the lecture?",
+    "options": {
+      "A": "Role prompt",
+      "B": "One-shot prompt",
+      "C": "Chain of thought",
+      "D": "Tree of thoughts"
+    },
+    "answer": "B"
+  },
+  {
+    "question": "5. Where can students find a comprehensive review on the potential of prompt engineering in Large Language Models?",
+    "options": {
+      "A": "University library",
+      "B": "Lecture slides",
+      "C": "Online resources/public domains",
+      "D": "Personal notes"
+    },
+    "answer": "C"
+  }
+]

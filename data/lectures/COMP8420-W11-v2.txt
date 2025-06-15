@@ -1,0 +1,294 @@
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or has licence to 
+use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Date: 23 May 2025
+COMP 8420 Advanced NLP
+'ADVANCED' TOPICS IN NLP
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+• The assignment was out (before Recess)
+• Form your team (1-2 students)
+• Check your project ideas with TA and lecturers
+• Join Practice Workshops in Weeks 11
+• After week 11 workshops, notify us (Qiongkai and Weijun) of 
+your project title, team members, and tentative workshop 
+for presentation (W1 or W2)
+• Present at Practice Workshop in Week 13
+Major Project
+OFFICE | FACULTY | DEPARTMENT
+2
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or has licence to 
+use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Date: 23 May 2025
+Matrix and Vector in NLP
+BOOSTING THE UNDERSTANDING OF NLP TECHNIQUES
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Overview
+VECTOR SPACE MODEL 
+ 
+-> SEMANTIC COMPRESSION
+MODELS’ LINEAR COMPONENTS
+ 
+-> LOW-RANK ADAPTATION
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Review
+YOU SHOULD HAVE KNOWN 
+NOW OR WILL KNOW SOON.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+•How to represent a document?
+Review – Vector Space Model
+OFFICE | FACULTY | DEPARTMENT
+6
+Doc 1:
+Doc 2:
+Doc 3:
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+•How to represent a document?
+Review – Vector Space Model
+OFFICE | FACULTY | DEPARTMENT
+7
+Doc 1: 
+(2, 
+1, 
+1 )
+Doc 2: 
+(0, 
+4, 
+1) 
+Doc 3: 
+(1, 
+0, 
+2)
+What is TF?
+What is TF-IDF?
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Semantic Compression
+MATRIX FACTORIZATION
+DEEP NEURAL NETWORK
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Motivation
+OFFICE | FACULTY | DEPARTMENT
+9
+Size of VSM: |D| x |V|
+• Vocabulary Size: 50,000 + in GPT-2
+• Document Number: >>TB
+Can we compress it?
+• Effectiveness
+• Efficiency
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Intuition
+OFFICE | FACULTY | DEPARTMENT
+10
+Apple
+Banana
+Cherry
+Truck
+Car
+Tyre
+Fruit
+Vehicle
+Round
+Rectangle
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Singular Value Decomposition (SVD)
+OFFICE | FACULTY | DEPARTMENT
+11
+A = U S VT
+where VTV = I and UTU = I
+are orthogonal matrix, 
+and S is a diagonal matrix
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+OFFICE | FACULTY | DEPARTMENT
+12
+Singular Value Decomposition (SVD)
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+OFFICE | FACULTY | DEPARTMENT
+13
+Singular Value Decomposition (SVD)
+How to get U, V and S?
+•
+U is composed of eigenvectors AAT
+•
+V is composed of eigenvectors ATA
+•
+S is composed of eigenvalues
+Use packages: numpy, scipy, etc.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+OFFICE | FACULTY | DEPARTMENT
+14
+Semantic Representation
+How to get rational semantics?
+•
+Decompose word-document matrix (SLI)
+•
+Decompose word-word document (Word2Vec)
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+OFFICE | FACULTY | DEPARTMENT
+15
+Latent Semantic Indexing (LSI)
+Pre-processing / learning:
+• Corpus/Documents -> TF-IDF matrix : A
+• SVD: A = U S VT ~ U' S' V'T
+• A' = A V'
+Inference / Query:
+• Query document -> TF-IDF vector: q
+• q' = q V'
+• max cos_sim(q', ai')
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+OFFICE | FACULTY | DEPARTMENT
+16
+Word Embedding
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+OFFICE | FACULTY | DEPARTMENT
+17
+Semantic Representation
+How to get rational semantics?
+•
+Decompose word-document matrix (SLI)
+•
+Decompose word-word document (Word2Vec)
+•
+Transferable between embedding spaces
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+OFFICE | FACULTY | DEPARTMENT
+18
+Semantic Transfer
+Chen, Yiyi, Qiongkai Xu, and Johannes Bjerva. "ALGEN: Few-shot Inversion Attacks on 
+Textual Embeddings using Alignment and Generation." In Proc. of ACL (2025).
+Object:
+Solution:
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Low-Rank Adaptation of LLM
+TOWARDS MORE EFFICIENT TRAINING
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Review
+YOU SHOULD HAVE KNOWN 
+NOW OR WILL KNOW SOON.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Review - DNN
+OFFICE | FACULTY | DEPARTMENT
+21
+•
+Linear Component: 
+  
+ 
+ 
+ 
+y = xW+b
+•
+Non-linear Transformation: 
+ 
+ 
+ 
+ 
+y’ = ReLu/Sigmoid(y)
+•
+Loss function: 
+ 
+ 
+ 
+ 
+Cross-Entropy loss
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+OFFICE | FACULTY | DEPARTMENT
+22
+Low Rank Approximation
+min ||A – A’||, 
+where A’ = U’ S’ V’ 
+w. low rank
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+OFFICE | FACULTY | DEPARTMENT
+23
+Low Rank Approximation
+Illustration of SVD dimensions and sparseness：
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+OFFICE | FACULTY | DEPARTMENT
+24
+Low Rank Approximation
+Select the top K Values from S
+|D| x K
+K x K
+K x |V|
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Low-Rank Adaptation
+DECOMPOSE TO MAIN AND 
+ADAPTATION PARTS
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Low-Rank Adaptation (LoRA)
+OFFICE | FACULTY | DEPARTMENT
+26
+𝑊′ = 𝑊+ ∆𝑊
+= 𝑊+ 𝐴𝐵
+Fix W and Update A and B only!
+𝑊′𝑥= 𝑊𝑥+ 𝐴𝐵𝑥
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Rationality of LoRA
+OFFICE | FACULTY | DEPARTMENT
+27
+𝝏𝑳
+𝝏𝑾=
+𝝏𝑳
+𝝏𝒚
+𝝏𝒚
+𝝏𝑾= 𝒈𝑻𝒙
+∆𝑾= ෍
+𝒊
+𝒈𝒊
+𝑻𝒙𝒊= 𝑮𝑻𝑿
+Chain-Rule (on 
+each sample):
+Aggregated 
+Gradient 
+Update:
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Connection to Major Project
+CAN YOU IMPROVE YOUR TEXT 
+VISUALIZATION IN EMBEDDING SPACES?
+CAN YOU ADAPT YOUR LLM TO A NEW 
+DOMAIN USING LORA?
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Next Week (W12)
+Guest Lecture by Dr Usman Naseem:
+Figurative Language Modelling for Health 
+Mention Classification on Social Media
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Teaching Survey
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Questions & Answers

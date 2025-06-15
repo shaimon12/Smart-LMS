@@ -1,0 +1,502 @@
+# COMP8420 Advanced Natural Language Processing
+## Week 9 - Evaluation in NLP Applications
+
+## Today's Topics
+- Why Evaluation Metrics Matter
+- Word (N-gram) Overlap Metrics (e.g., BLEU, ROUGE)
+- Model-Based Metrics (e.g., BERTScore)
+- Human Evaluation
+
+💡 **NOTE**: We will want to use a GPU to accelerate when working with LLMs. In Google Colab, go to **Runtime > Change runtime type > Hardware accelerator > T4 GPU**.
+
+#### 1. Why Evaluation Metrics Matter
+
+In standard machine learning tasks — including some NLP problems like sentiment classification — we commonly use:
+
+- Accuracy  
+- Precision / Recall  
+- F1-score  
+
+These metrics work well when there is **only one correct label** per input.
+
+However, many core NLP tasks — such as **paraphrasing**, **summarization**, or **translation** — are **open-ended**:
+
+> There are often multiple valid outputs, and no single 'correct' answer
+
+Let’s explore some examples that highlight the unique challenges in evaluating NLP models.
+
+# Machine Translation: Multiple valid outputs
+
+prompt = "Translate from French to English: 'Bonjour'"
+
+reference = "Hello"
+
+output_1 = "Hi"
+output_2 = "Good day"
+
+All three translations are acceptable.
+
+But if we use **exact-match-style evaluation** (like in classification), these outputs might receive poor scores — even though they are valid.
+
+Let’s now look at some common challenges when evaluating NLP systems.
+
+# Challenge 1: Form ≠ Meaning
+
+prompt = "Summarize: 'The cat lay on the mat in the sunlight.'"
+
+output_1 = "The cat was relaxing in the sun."
+output_2 = "A feline rested under sunlight."
+
+💡 Which summary do you prefer — or are they equivalent in meaning?
+
+Despite using different wording, both outputs express the same idea.  
+Surface-level metrics might give them low similarity scores.
+
+# Challenge 2: Subjective Human Judgment
+
+prompt = "Respond to: 'Thanks for your help.'"
+
+output_a = "No worries!"
+output_b = "It was my pleasure."
+output_c = "Sure."
+
+💡 Which one do you think is most appropriate?
+
+Different people might prefer different responses depending on tone, personality, or culture.  
+Subjectivity like this is hard to capture with automatic metrics.
+
+# Challenge 3: Small Changes, Big Meaning Shift
+
+prompt = "Is this medication effective?"
+
+output_a = "The trial shows it is effective."
+output_b = "The trial shows it is not effective."
+
+These sentences look very similar — but mean the **opposite**.  
+
+💡 Would an exact-match or token-level metric detect this?
+
+# Challenge 4: Hard-to-Measure Qualities (e.g., Factuality)
+
+question = "Who is the current monarch of the United Kingdom in 2025?"
+incorrect_output = "Queen Elizabeth II is the current monarch of the United Kingdom."
+
+The output is fluent and grammatically correct — but **factually incorrect**.
+
+A surface-based metric may still assign a high score due to its fluency and similarity to correct answers.
+
+> **Discussion:**
+
+Have you encountered any similar problems when evaluating NLP tasks during your assignments or practical projects?
+
+#### 💡 Reflection
+
+These examples show why evaluation in NLP is uniquely challenging:
+
+- Outputs are often **non-deterministic** (many possible correct answers)
+- Evaluation must consider **semantic meaning**, not just word overlap
+- Human judgments can be **subjective and inconsistent**
+- Many real-world concerns (e.g., **factuality**, **bias**, **fluency**) are **hard to measure automatically**
+
+✅ Choosing the right evaluation strategy is therefore **critical**.
+
+
+
+
+#### 2. Word (N-gram) Overlap Metrics
+
+To evaluate open-ended outputs, researchers proposed **fast, automatic metrics** based on **word overlap**.
+
+The core idea:
+
+> **The more shared words or phrases (n-grams) between two texts, the more similar their content is.**
+
+This intuition led to the development of **word overlap metrics**, such as:
+
+* **[BLEU](https://aclanthology.org/P02-1040/)** (Bilingual Evaluation Understudy): measures the precision of n-grams
+  - How many n-grams in the candidate (predicted output) also appear in the reference (ground truth).
+
+* **[ROUGE](https://aclanthology.org/W04-1013/)** (Recall-Oriented Understudy for Gisting Evaluation): emphasizes recall  
+  - How much of the reference is recovered in the candidate output.
+
+Let’s first explore BLEU — how it works, what it captures.
+
+#### BLEU
+
+**BLEU** is a metric for comparing a candidate text to one or more reference translations.  
+While originally developed for machine translation, it is now widely used in many text generation tasks such as summarization, captioning, and paraphrasing.
+
+BLEU captures two key aspects:
+- **N-gram precision**: rewards fluency and local phrase overlap
+- **Brevity penalty**: discourages overly short outputs that might "cheat" with high precision
+
+!pip install -q nltk
+
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+
+#### Example: N-gram Precision
+
+Let’s compare a candidate that has all the right words but in the wrong order.
+
+reference = [["the", "cat", "is", "on", "the", "mat"]]
+candidate = ["on", "the", "mat", "the", "cat", "is"]
+
+# Manual unigram precision
+ref_set = set(reference[0])
+overlap = sum(1 for word in candidate if word in ref_set)
+precision_unigram = overlap / len(candidate)
+
+print(f"Unigram precision: {precision_unigram:.4f}")
+
+# Compute BLEU scores with different n-gram weights
+# weights represent the weight for each n-gram (from 1-gram to 4-gram), default BLEU uses equal weights for 1- to 4-gram
+
+smooth = SmoothingFunction().method1
+
+# We can then calculate the cumulative BLEU n-gram scores
+bleu1 = sentence_bleu(reference, candidate, weights=(1, 0, 0, 0), smoothing_function=smooth)
+bleu2 = sentence_bleu(reference, candidate, weights=(0.5, 0.5, 0, 0), smoothing_function=smooth)
+bleu3 = sentence_bleu(reference, candidate, weights=(0.33, 0.33, 0.33, 0), smoothing_function=smooth)
+bleu4 = sentence_bleu(reference, candidate, weights=(0.25, 0.25, 0.25, 0.25), smoothing_function=smooth) ## Default setting.
+
+for i, score in enumerate([bleu1, bleu2, bleu3, bleu4], start=1):
+    print(f"BLEU-{i}: {score:.4f}")
+
+Although all the words are correct, the word order is scrambled.   
+BLEU-1 is high, but BLEU-4 drops significantly — reflecting poor phrase-level fluency.
+
+BLEU encourages higher-order n-gram matching:
+
+candidate2 = ["the", "cat", "is", "lying", "on", "the", "mat"]
+
+# Cumulative BLEU with default weights (BLEU-1 to BLEU-4)
+bleu1 = sentence_bleu(reference, candidate2, weights=(1, 0, 0, 0), smoothing_function=smooth)
+bleu2 = sentence_bleu(reference, candidate2, weights=(0.5, 0.5, 0, 0), smoothing_function=smooth)
+bleu3 = sentence_bleu(reference, candidate2, weights=(0.33, 0.33, 0.33, 0), smoothing_function=smooth)
+bleu4 = sentence_bleu(reference, candidate2, smoothing_function=smooth)
+
+for i, score in enumerate([bleu1, bleu2, bleu3, bleu4], start=1):
+    print(f"BLEU-{i}: {score:.4f}")
+
+Even though “lying” is not in the reference, the sentence meaning is similar, but the 4-gram BLEU score is bad.
+
+We can also inspect each individual n-gram precision:
+
+candidate2 = ["the", "cat", "is", "lying", "on", "the", "mat"]
+
+# We can also calculate the individual BLEU n-gram scores
+bleu1 = sentence_bleu(reference, candidate2, weights=(1, 0, 0, 0), smoothing_function=smooth)
+bleu2 = sentence_bleu(reference, candidate2, weights=(0, 1, 0, 0), smoothing_function=smooth)
+bleu3 = sentence_bleu(reference, candidate2, weights=(0, 0, 1, 0), smoothing_function=smooth)
+bleu4 = sentence_bleu(reference, candidate2, weights=(0, 0, 0, 1), smoothing_function=smooth)
+
+for i, score in enumerate([bleu1, bleu2, bleu3, bleu4], start=1):
+    print(f"BLEU-{i}: {score:.4f}")
+
+#### Example: Brevity Penalty
+
+What if the candidate is too short?
+
+Even if the words are correct, BLEU penalizes it for incompleteness.
+
+## Consider a case where the translation model only output two words, they are correct, so unigram precision is high.
+
+reference = [["the", "cat", "is", "on", "the", "mat"]]
+short_candidate = ["the", "cat"]  # very short, but overlaps well
+
+# Manual unigram precision = matched tokens / candidate length
+ref_set = set(reference[0])
+overlap = sum(1 for word in short_candidate if word in ref_set)
+precision_unigram = overlap / len(short_candidate)
+print(f"Unigram precision (manual): {precision_unigram:.4f}\n")
+
+reference = [["the", "cat", "is", "on", "the", "mat"]]
+
+candidate_short = ["the", "cat"]  # Good unigram overlap but short
+candidate_long = ["the", "cat", "is", "on", "the"]
+
+candidates = {
+    "Short Output": candidate_short,
+    "Long Output": candidate_long
+}
+
+smooth = SmoothingFunction().method1
+
+def print_bleu_scores(candidate, reference):
+    bleu1 = sentence_bleu(reference, candidate, weights=(1, 0, 0, 0), smoothing_function=smooth)
+    bleu2 = sentence_bleu(reference, candidate, weights=(0.5, 0.5, 0, 0), smoothing_function=smooth)
+    bleu3 = sentence_bleu(reference, candidate, weights=(1/3, 1/3, 1/3, 0), smoothing_function=smooth)
+    bleu4 = sentence_bleu(reference, candidate, smoothing_function=smooth)
+    return bleu1, bleu2, bleu3, bleu4
+
+# Print results
+print("Comparison of BLEU scores for short and long candidates:")
+for label, cand in candidates.items():
+    b1, b2, b3, b4 = print_bleu_scores(cand, reference)
+    print(f"{label:<15} | BLEU-1: {b1:.4f} | BLEU-2: {b2:.4f} | BLEU-3: {b3:.4f} | BLEU-4: {b4:.4f}")
+
+#### ROUGE
+
+While **BLEU** focuses on *precision* — how many n-grams in the candidate are correct —  
+**ROUGE** takes the opposite perspective:
+
+> It emphasizes *recall* — how much of the reference is captured by the candidate.
+
+This makes ROUGE especially useful in scenarios where **partial recovery of key information** is valuable — such as in **summarization**, **headline generation**, or **other information-sensitive tasks**.
+
+The most common [ROUGE](https://github.com/google-research/google-research/blob/master/rouge/rouge_scorer.py) variants include:
+
+- **ROUGE-N**: Measures n-gram overlap (e.g., ROUGE-1 for unigrams, ROUGE-2 for bigrams)
+- **ROUGE-L**: Based on the Longest Common Subsequence (LCS), capturing structural similarity
+
+Let’s explore how to compute ROUGE scores and understand what they mean in practice.
+
+!pip install rouge-score
+
+The basic formula for **ROUGE-N recall** is:
+
+$$
+\text{ROUGE-N}_{\text{recall}} = \frac{\# \text{ overlapping n-grams}}{\# \text{ n-grams in reference}}
+$$
+
+Let’s calculate ROUGE scores for the following pair:
+
+- Reference: “the cat is on the mat”  
+- Candidate: “a black cat is quietly sitting on the mat”
+
+> 💡 Can you manually calculate the rouge-1 recall score?
+
+from rouge_score import rouge_scorer
+
+# Reference and candidate texts
+reference = "the cat is on the mat"
+candidate = "a black cat is quietly sitting on the mat"
+
+# Initialize scorer
+rouge_types = ["rouge1", "rouge2", "rougeL"]
+scorer = rouge_scorer.RougeScorer(rouge_types=rouge_types)
+
+# Compute scores
+scores = scorer.score(reference, candidate)
+
+# Show recall only
+for k in rouge_types:
+    print(f"{k} recall: {scores[k].recall:.4f}")
+
+Researchers have extended ROUGE to include **precision** and the harmonic **F1-score** for more balanced evaluation:
+
+- **ROUGE precision** (how much of the candidate is correct):
+
+$$
+\text{ROUGE-N}_{\text{precision}} = \frac{\# \text{ overlapping n-grams}}{\# \text{ n-grams in candidate}}
+$$
+
+- **ROUGE F1-score** (harmonic mean of precision and recall):
+
+$$
+\text{ROUGE-N}_{F1} = \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
+$$
+
+# Show precision and F1
+for k in rouge_types:
+    print(f"{k} precision: {scores[k].precision:.4f}")
+    print(f"{k} F1-score: {scores[k].fmeasure:.4f}\n")
+
+#### 💡 Limitations of Word (N-gram) Overlap Metrics
+
+Scores such as **BLEU** and **ROUGE** are simple and fast, making them useful for many NLP tasks — but they have limits.
+
+Example 1: Negation (High Overlap, Wrong Meaning)
+
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+from rouge_score import rouge_scorer
+
+# Reference: correct output with negation
+reference = ["The", "trial", "for", "the", "new", "medicine", "is", "unsuccessful"]
+
+# Candidate with correct meaning
+candidate_correct = ["The", "trial", "for", "the", "new", "medicine", "is", "unsuccessful"]
+
+# Candidate with negation error (flips the meaning)
+candidate_negation_error = ["The", "trial", "for", "the", "new", "medicine", "is", "successful"]
+
+# BLEU scores
+smooth = SmoothingFunction().method1
+bleu_correct = sentence_bleu([reference], candidate_correct, smoothing_function=smooth)
+bleu_wrong = sentence_bleu([reference], candidate_negation_error, smoothing_function=smooth)
+
+# ROUGE scores
+scorer = rouge_scorer.RougeScorer(["rouge1", "rouge2", "rougeL"], use_stemmer=True)
+rouge_correct = scorer.score(" ".join(reference), " ".join(candidate_correct))
+rouge_wrong = scorer.score(" ".join(reference), " ".join(candidate_negation_error))
+
+print("BLEU scores:")
+print(f"  Correct Output        : {bleu_correct:.4f}")
+print(f"  Negation Error Output : {bleu_wrong:.4f}")
+
+print("\nROUGE-L F1 scores:")
+print(f"  Correct Output        : {rouge_correct['rougeL'].fmeasure:.4f}")
+print(f"  Negation Error Output : {rouge_wrong['rougeL'].fmeasure:.4f}")
+
+Do you think the results are reasonable?
+- BLEU and ROUGE scores look decent in the negation case (despite wrong meaning)
+
+Example 2: Paraphrasing (Low Overlap, Same Meaning)
+
+reference = ["the", "cat", "sat", "on", "the", "mat"]
+candidate = ["a", "feline", "was", "resting", "on", "the", "rug"]
+
+# BLEU
+bleu_score = sentence_bleu([reference], candidate, smoothing_function=smooth)
+print(f"BLEU (paraphrase): {bleu_score:.4f}")
+
+# ROUGE
+rouge = scorer.score(" ".join(reference), " ".join(candidate))
+for k, v in rouge.items():
+    print(f"{k} F1: {v.fmeasure:.4f}")
+
+Do you think the results are reasonable?
+- BLEU and ROUGE scores are low in the paraphrasing case (despite correct meaning)
+
+#### 3. Model-Based Metrics (e.g., BERTScore)
+
+Word overlap metrics like **BLEU** and **ROUGE** treat text as a bag of surface tokens — they have no understanding of **meaning**.
+
+To go beyond exact matches, we can use **pretrained embeddings** to capture semantic similarity.  
+These representations allow us to compare generated and reference texts based on **contextual meaning**, not just word overlap.
+
+Let’s try **[BERTScore](https://github.com/Tiiiger/bert_score)** — a model-based metric that compares the contextual embeddings of tokens in the candidate and reference.
+
+Despite the name, BERTScore does not strictly use BERT.
+
+<center>
+    <img src="https://jlibovicky.github.io/assets/bertscore.png" width="65%">
+</center>
+
+!pip install -q bert-score
+from bert_score import score
+
+Re-evaluation of the Paraphrasing Example
+
+ref = ["The cat sat on the mat."]
+cand = ["A feline was resting on the rug."]
+
+P, R, F1 = score(cand, ref, lang="en", verbose=False)
+print(f"BERTScore (Paraphrasing) - F1: {F1.item():.4f}")
+
+BERTScore handles paraphrasing well: although the surface forms differ, the semantic meaning is preserved — and BERTScore captures that.
+
+Re-evaluation of the Negation Example
+
+ref = ["The trial for the new medicine is unsuccessful."]
+cand = ["The trial for the new medicine is successful."]
+
+P, R, F1 = score(cand, ref, lang="en", verbose=False)
+print(f"BERTScore (Negation) - F1: {F1.item():.4f}")
+
+BERTScore remains high, showing its **limitation in detecting negation or logical inconsistency**.
+
+#### 4. Human Evaluation
+
+While model-based metrics like **BERTScore** improve over surface-level matching by capturing semantic similarity, they are still far from perfect.
+
+They may miss critical distinctions like **negation**, **factual correctness**, or **pragmatic tone** — things that humans can easily perceive but models struggle to evaluate.
+
+Let’s look at some examples where automatic metrics give **high scores**, but a human reader would judge the output as **low quality** or **problematic**.
+
+
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+from rouge_score import rouge_scorer
+from bert_score import score
+
+# Reference and repetitive candidate
+reference = "The Eiffel Tower is very famous."
+candidate = "The Eiffel Tower is very famous. The Eiffel Tower is very famous."
+
+# BLEU
+ref_tokens = [reference.lower().split()]
+cand_tokens = candidate.lower().split()
+smooth = SmoothingFunction().method1
+bleu = sentence_bleu(ref_tokens, cand_tokens, smoothing_function=smooth)
+print(f"BLEU: {bleu:.4f}")
+
+# ROUGE
+scorer = rouge_scorer.RougeScorer(["rougeL"], use_stemmer=True)
+rouge = scorer.score(reference, candidate)
+for k, v in rouge.items():
+    print(f"{k.upper()}: {v.fmeasure:.4f}")
+
+# BERTScore
+P, R, F1 = score([candidate], [reference], lang="en", verbose=False)
+print(f"BERTScore F1: {F1.item():.4f}")
+
+# Reference and bland candidate
+reference = "Thank you for reaching out. We’ll get back to you by Friday with a full report."
+candidate = "Thank you for reaching out. We’ll get back to you soon."
+
+# BLEU
+ref_tokens = [reference.lower().split()]
+cand_tokens = candidate.lower().split()
+bleu = sentence_bleu(ref_tokens, cand_tokens, smoothing_function=smooth)
+print(f"BLEU: {bleu:.4f}")
+
+# ROUGE
+rouge = scorer.score(reference, candidate)
+print("ROUGE F1 scores:")
+for k, v in rouge.items():
+    print(f"{k.upper()}: {v.fmeasure:.4f}")
+
+# BERTScore
+P, R, F1 = score([candidate], [reference], lang="en", verbose=False)
+print(f"BERTScore F1: {F1.item():.4f}")
+
+On the other hand, there could be also cases etrics fail to flag potential risks.  
+
+Consider a case where adding noise to protect private information.
+
+from pprint import pprint
+
+reference = "On May 9, 2025, Alex ordered a high-end gaming PC from Amazon using his email alex789@somewhere.com, shipping it to 123 5th Avenue, New York, and paid with a Visa card ending in 1234."
+candidate = "On MaH 9G|2b|5, AlJx orderu\ a higi-end gam^ing PC:fr`m Amazoo usimnmhis emaii @lex789@$omewherLcom, shpping ^t to H23 5Zh Avenue, New Yo>k_ andLpaidAwiGhya;Vasa car^ eBdiAg in=1234"
+
+print("Reference:\n")
+pprint(reference, width=100)
+print("\nCandidate:\n")
+pprint(candidate, width=100)
+
+# BLEU
+ref_tokens = [reference.lower().split()]
+cand_tokens = candidate.lower().split()
+smooth = SmoothingFunction().method1
+bleu = sentence_bleu(ref_tokens, cand_tokens, smoothing_function=smooth)
+print(f"\nBLEU: {bleu:.4f}")
+
+# ROUGE
+scorer = rouge_scorer.RougeScorer(["rouge1", "rouge2", "rougeL"], use_stemmer=True)
+rouge = scorer.score(reference, candidate)
+for k, v in rouge.items():
+    print(f"{k.upper()} F1: {v.fmeasure:.4f}")
+
+# BERTScore
+P, R, F1 = score([candidate], [reference], lang="en", verbose=False)
+print(f"BERTScore F1: {F1.item():.4f}")
+
+
+#### 💡 Reflection
+
+NLP tasks often have **open-ended outputs**, making evaluation difficult.  
+Automatic metrics (BLEU, ROUGE, BERTScore) are fast — but often miss nuances like **negation**, **tone**, or **factual accuracy**.
+
+**Human perception** remains essential for judging true quality — especially for:
+- Safety-critical outputs
+- Subjective tasks (e.g., helpfulness or politeness)
+- Detecting subtle flaws or hallucinations
+
+This is also why modern LLMs increasingly rely on **human-labeled preferences** to evaluate and improve model behavior.
+
+> For example, [**LM Arena**](https://lmarena.ai/) offers human judgments on LLM-generated answers to benchmark models more reliably.   
+
+## **This workshop has helped you:**
+- Understand why **evaluation** in NLP is uniquely challenging, especially for **open-ended tasks**.
+- Explore the strengths and limitations of **BLEU**, **ROUGE**, and **BERTScore** as automated metrics.
+- Recognize the importance of **human perception** in evaluating generation quality — where automatic metrics may fail.

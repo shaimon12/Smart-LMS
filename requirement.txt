@@ -1,0 +1,9 @@
+openai
+langchain
+sentence-transformers
+nltk
+matplotlib
+wordcloud
+python-dotenv
+pydub
+whisper
