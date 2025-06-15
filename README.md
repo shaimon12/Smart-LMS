@@ -95,23 +95,21 @@ StudentAgentDataset/
    Make sure the following libraries are installed in your Python environment:
    ```bash
    pip install openai langchain chromadb sentence-transformers nltk wordcloud matplotlib
-
-```
-
+   
+    ```
 ---
 
 ## Security Notice
 
 > Do NOT hardcode your API key in public repositories. Use environment variables or `.env` files.
-
 ---
 
-## 👤 Author
+## Author
 
 **Shaimon Rahman**
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed for academic use only under [MIT License](LICENSE).
