@@ -4,9 +4,9 @@ This project implements a role-based, AI-powered LMS assistant that supports **S
 
 ---
 
-## 🤖 Agents Overview
+## Agents Overview
 
-### 🧑‍🎓 Student Agent
+### Student Agent
 Helps students interact with the COMP8420 course through intelligent text or voice-based queries.
 
 #### Features:
@@ -20,7 +20,7 @@ Helps students interact with the COMP8420 course through intelligent text or voi
 
 ---
 
-### 👨‍🏫 Teacher Agent
+### Teacher Agent
 Supports teachers by summarizing common queries, evaluating content delivery, and auto-generating quizzes.
 
 #### Features:
@@ -30,7 +30,7 @@ Supports teachers by summarizing common queries, evaluating content delivery, an
 
 ---
 
-### 🛠 Admin Agent
+### Admin Agent
 Helps course admins monitor usage, answer FAQs, and respond to system alerts.
 
 #### Features:
@@ -40,7 +40,7 @@ Helps course admins monitor usage, answer FAQs, and respond to system alerts.
 
 ---
 
-## 📁 Dataset Structure
+## Dataset Structure
 
 ```
 StudentAgentDataset/
@@ -60,7 +60,7 @@ StudentAgentDataset/
 
 ---
 
-## 🧠 Technologies Used
+## Technologies Used
 
 - **LangChain** – Agent tool management
 - **OpenAI GPT-3.5** – QA, summarization, quiz creation
@@ -71,7 +71,7 @@ StudentAgentDataset/
 
 ---
 
-## 📊 Evaluation Metrics
+## Evaluation Metrics
 
 Each tool was tested individually with:
 
@@ -82,7 +82,7 @@ Each tool was tested individually with:
 
 ---
 
-## 🔍 RAG vs Non-RAG Evaluation
+## RAG vs Non-RAG Evaluation
 
 To test the effect of retrieval-augmented generation:
 
@@ -100,7 +100,7 @@ This highlights the importance of RAG in academic NLP tools.
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 1. **Open Notebook**
 
@@ -120,20 +120,19 @@ export OPENAI_API_KEY=your-key
 
 ---
 
-## 🔐 Security Note
+## Security Note
 
 **DO NOT upload notebooks with your API keys to public GitHub repositories.** Always use environment variables or `.env` for credentials.
 
 ---
 
-## 👤 Author
+## Author
 
 **Shaimon Rahman**  
-Final Year Master's Student – Software Engineering  
-Federation University Australia
+
 
 ---
 
-## 📄 License
+## License
 
 This project is for academic use and released under the [MIT License](LICENSE).
