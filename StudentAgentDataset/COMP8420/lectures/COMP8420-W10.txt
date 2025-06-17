@@ -1,0 +1,261 @@
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or has licence to 
+use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Date: 16th May 2025
+COMP 8420 Advanced NLP
+'ADVANCED' TOPICS IN NLP
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+• Target: A comprehensive NLP project for IT companies.
+• Principle Rules:
+• Any tools and materials learning from COMP 8420 or other 
+sibling courses
+• New insights into NLP. Try to surprise lecturers and TAs!
+• Presentation (Week 13 Practice Workshop 6th June, 2024)
+• Code/dataset/model + report (Exam period 11th June, 2024)
+• Team of 1-2 students (suggest 2).
+• Form and register your team in Week 10 Practice Workshop.
+• Start your project ASAP!
+Major Project
+OFFICE | FACULTY | DEPARTMENT
+2
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or has licence to 
+use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Date: 16th May 2025
+Security and Privacy in NLP
+HIGH CAPABILITY IS ALWAYS ACCOMPANIED WITH HIGH RISK
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Review
+YOU SHOULD HAVE KNOWN 
+NOW OR WILL KNOW SOON.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+•What is machine learning?
+P(Y|X)
+•How to Train ML/DL models including LM?
+•Dataset
+•Loss & Gradients
+•Back-propagation
+•Inference / Test
+Review
+OFFICE | FACULTY | DEPARTMENT
+5
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Threats in Almost All 
+Usage of NLP Models
+IS THIS TRUE?
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Name a few ways you use Language Models:
+•Generate translation; polish writing; …
+•Summarize the (retrieved) information, say 
+documents;
+•Classify sentiments, topics, ...
+•AI Agents in the wild.
+Threats Every Where?!
+OFFICE | FACULTY | DEPARTMENT
+7
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Security Challenges in NLP
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Security Challenges in NLP
+OFFICE | FACULTY | DEPARTMENT
+9
+1. Inference Stage:
+•
+Training data leakage
+•
+Adversarial attack
+•
+Jailbreaking
+2. Training Stage:
+•
+Backdoor attack
+•
+Training data leakage
+3. NLP as a Service:
+•
+Imitation attack
+•
+Watermarking
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Threats in Inference 
+TRAINING DATA LEAKAGE
+ADVERSARIAL ATTACK
+JAILBREAK ATTACK
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Training Data Leakage (in Inference)
+OFFICE | FACULTY | DEPARTMENT
+11
+Carlini, Nicolas, et al. "Extracting Training Data from Large Language Models." In USENIX 2021.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Training Data Leakage (in Inference)
+OFFICE | FACULTY | DEPARTMENT
+12
+Carlini, Nicolas, et al. "Extracting Training Data from Large 
+Language Models." In USENIX 2021.
+Lessons:
+• Extraction attacks are a practical threat.
+• Memorization does not require overfitting.
+• Larger Language Models probably memorize 
+more data than you think.
+• Memorization can be hard to discover.
+• Adopt and develop mitigation strategies.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+How to mitigate privacy leakage?
+Mitigation
+OFFICE | FACULTY | DEPARTMENT
+13
+Adding ‘noise’ in training. -> Differential Privacy
+Reasoning the risks -> CoT
+‘Unlearning’ the training samples -> Machine Unlearning
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Adversarial Attack (in Inference)
+OFFICE | FACULTY | DEPARTMENT
+14
+Original Input
+This film is pleased to 
+discover that ….
+Prediction:
+Positive (80%)
+Adversarial Sample
+[Visually similar]
+This filn is plea sed to 
+discover that ….
+Prediction:
+Negative (53%)
+Adversarial Sample
+[Semantically similar]
+This footage is 
+pleased to discover 
+that ...
+Prediction:
+Negative (54%)
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+•Adversarial Training
+•Use the adversarial samples
+•Generative Adversarial Network (GAN)
+•Use the generative neural network to 
+generate the adversarial samples
+Defending Adversarial Attack
+OFFICE | FACULTY | DEPARTMENT
+15
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Jailbreak Attack (in Inference)
+OFFICE | FACULTY | DEPARTMENT
+16
+Chao, Patrick et al., "Jailbreaking Black Box Large Language Models in Twenty Queries", arXiv 2023.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Threats in Training 
+BACKDOOR ATTACK
+TRAINING DATA LEAKAGE
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Backdoor Attack (in Training)
+OFFICE | FACULTY | DEPARTMENT
+18
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Backdoor Attack (in Training)
+OFFICE | FACULTY | DEPARTMENT
+19
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Backdoor Attack (in Training)
+OFFICE | FACULTY | DEPARTMENT
+20
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Training Data Leakage (in Training)
+OFFICE | FACULTY | DEPARTMENT
+21
+Federated Learning:
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Training Data Leakage (in Training)
+OFFICE | FACULTY | DEPARTMENT
+22
+Melis, Luca et al., "Exploiting unintended feature leakage in collaborative learning", In IEEE S&P 2019.
+Zhu, Ligeng et al., "Deep leakage from gradients", In NeurIPS 2019.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Threats in NLP Service 
+IMITATION ATTACK
+WATERMARK
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Imitation Attack (in NLP API Service)
+OFFICE | FACULTY | DEPARTMENT
+24
+Xu, Qiongkai, et al., "Student surpasses teacher: Imitation attack for black-box nlp apis", In COLING 2022.
+Imitators outperform victim APIs!
+Naïve defense harms victims more 
+than attackers!
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Watermarking Principle
+OFFICE | FACULTY | DEPARTMENT
+25
+Principles of Watermark:
+•
+Retaining semantic of the original data;
+•
+Transferrable to imitators;
+•
+Verifiable by the API owner only;
+•
+(Optional) Explainable to human judge.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Text Watermark
+OFFICE | FACULTY | DEPARTMENT
+26
+•Intuition:
+Which sentence set is written by me (QK’s language model)?
+He, Xuanli, et al. "Protecting intellectual property of language generation apis with lexical watermark." In AAAI 2022.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Text Watermark
+OFFICE | FACULTY | DEPARTMENT
+27
+He, Xuanli, et al. "Protecting intellectual property of language generation apis with lexical watermark." In AAAI 2022.
+Step 1: Detect target words from text.
+Step 2: Find synonyms.
+Step 3: Replace target words with 
+synonyms according to rules.
+Dict: {great, outstanding, marvelous, fabulous}
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Connection to Major Project
+CAN YOU IDENTIFY THE SECURITY ISSUES 
+IN COMMERCIAL LANGUAGE MODELS?
+HOW TO EVALUATE AND MITIGATE THE 
+THREATS?
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Opportunities
+RESEARCH PROJECT FOR MRES & PHD.
+TOP-UP SCHOLARSHIP FOR LOCAL STUDENTS
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Questions & Answers

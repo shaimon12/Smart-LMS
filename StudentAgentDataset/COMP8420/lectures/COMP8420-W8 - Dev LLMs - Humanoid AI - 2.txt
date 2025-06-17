@@ -1,0 +1,677 @@
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or has licence to 
+use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Lecture 8 | Date: 2nd May 2025 | Prof. Longbing Cao, Peizhen Li (guest lecturer) | Www.DataSciences.Org
+COMP 8420 Advanced NLP
+DEVELOPING LLMS: LLMS FOR HUMANOID AI
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Agenda – This week
+OFFICE | FACULTY | DEPARTMENT
+2
+• Overview of humanoid AI
+• LLMs-driven humanoid robots
+• Humanoid AI tasks
+• LLMs-driven live conversation
+• Face recognition
+• Action recognition
+• Visual Q/A
+• RAG
+• Emotion imitation
+• Multi-party conversation
+• Metaverse humanoid AI
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Guest lecturer
+OFFICE | FACULTY | DEPARTMENT
+3
+• Miss Peizhen Li
+• PhD student, MQ
+• Industry working experience
+• Google PhD scholarship
+• Thesis research on LLMs-driven 
+emotional humanoid AI 
+https://lipzh5.github.io/
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+References
+OFFICE | FACULTY | DEPARTMENT
+4
+• Humanoid AI and AI robots: https://datasciences.org/humanoid-ai/
+• Longbing Cao. AI Robots and Humanoid AI: Review, Perspectives and Directions, 1-37, 
+19 March, 2024
+• Longbing Cao. AI4Tech: X-AI Enabling X-Tech with Human-like, Generative, 
+Decentralized, Humanoid and Metaverse AI, International Journal of Data Science and 
+Analytics, 18, 219–238, 2024
+• Longbing Cao. Decentralized AI: Edge Intelligence and Smart Blockchain, Metaverse, 
+Web3, and DeSci. IEEE Intell. Syst. 37(3): pp. 6-19, 2022
+• Peizhen Li, Longbing Cao, Xiao-Ming Wu, Xiaohan Yu, Runze Yang. UGotMe: An 
+Embodied System for Affective Human-Robot Interaction, ICRA, 2025.
+• Online resources/public domains
+• The slides may involve materials from online, public domains, and 
+other lectures etc., do not share the slides
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Decentralized AI
+INTEGRATING DEVICE, EDGE AND 
+CLOUD INTELLIGENCE
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Decentralized AI - overview
+OFFICE | FACULTY | DEPARTMENT
+6
+• Decentralized AI (DeAI)
+• AI thinking, methodologies, 
+technologies, systems, and 
+services for developing, 
+managing, and deploying 
+decentralized intelligence in 
+decentralized settings; 
+• Storing, updating, sharing, 
+and exchanging 
+decentralized intelligence 
+between decentralized 
+agents, nodes, or devices; 
+• Integrating decentralized 
+intelligence from local 
+agents and across 
+decentralized ecosystems 
+(with their services, and 
+environments) for higher 
+level intelligence and 
+intelligent problem solving
+Longbing Cao. Decentralized AI: Edge Intelligence and Smart Blockchain, 
+Metaverse, Web3, and DeSci. IEEE Intell. Syst. 37(3): pp. 6-19, (2022
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Decentralized AI - overview
+OFFICE | FACULTY | DEPARTMENT
+7
+•
+DeAI
+•
+Centralized AI (CeAI)
+•
+A central controller, mediator, 
+matchmaker, coordinator, or 
+communicator (for message 
+passing) to manage and govern 
+agents and task execution
+•
+Distributed AI (DAI)
+•
+Multiagent systems for parallel 
+or distributed problem solving
+•
+Decompose a problem or task 
+to subproblems or subtasks
+•
+Assign them into specialized 
+agents for handling
+•
+Synergize agent-based partial 
+solutions to form the solution to 
+the problem
+Longbing Cao. Decentralized AI: Edge Intelligence and Smart Blockchain, 
+Metaverse, Web3, and DeSci. IEEE Intell. Syst. 37(3): pp. 6-19, (2022
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Humanoid AI: Overview
+HUMANOID AND AI ROBOTS
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+AI robots 
+OFFICE | FACULTY | DEPARTMENT
+9
+• AI robots
+• AI-driven robots to 
+perform tasks by 
+mimicking human 
+intelligence
+• Perceive, decide, 
+act/respond
+• Service robots
+• Industrial robots
+• Medical robots
+• Autonomous vehicles
+• Autonomous drones 
+• Humanoid robots
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Humanoid robots 
+OFFICE | FACULTY | DEPARTMENT
+10
+• Humanoid robots
+• Possess human 
+structures with human 
+appearance through 
+assembling human-size 
+and human-looking body 
+parts
+• Undertake human senses, 
+behaviors, functions, 
+humanity, and intelligence
+• Major innovators: NVIDIA, 
+DeepMind, Telsta …
+Longbing Cao. AI Robots and humanoid AI: Review, 
+Perspectives, and Directions, 1-37, 2024.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Humanoid robots 
+OFFICE | FACULTY | DEPARTMENT
+11
+• Human-looking humanoids, 
+aiming for lookalike humanization 
+with humanoid structures 
+simulating human appearance 
+with human-size and -looking body 
+parts, with or without other 
+human attributes or functions
+• Human-like humanoids, aiming for 
+functional humanization by 
+developing humanoids to replicate 
+human senses, behaviors, and 
+functions
+• Human-level humanoids, aiming 
+for systematic humanization by 
+nurturing humanoids embodied 
+with substantial and systematic 
+humanity and human intelligence
+Longbing Cao. AI Robots and humanoid AI: Review, 
+Perspectives, and Directions, 1-37, 2024.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Humanoid robots 
+OFFICE | FACULTY | DEPARTMENT
+12
+• Humanoid structures: translating 
+human structures into human-
+looking humanoid structures
+• Humanoid senses: translating 
+human senses into human-like 
+humanoid senses
+• Humanoid behaviors: translating 
+human behaviors into human-like 
+behaviors
+• Humanoid functions: translating 
+human functions into human-like 
+humanoid functions
+• Humanoid humanity: translating 
+humanity into human-like 
+humanoid humanity
+• Humanoid intelligence: translating 
+human intelligence into human-
+level humanoid intelligence
+Longbing Cao. AI Robots and humanoid AI: Review, 
+Perspectives, and Directions, 1-37, 2024.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Humanoid robots 
+OFFICE | FACULTY | DEPARTMENT
+13
+• Humanoid AI, AI humanoids
+• X-AI
+• Robotics
+• AI robots, AI robotics
+• Human
+• Intelligence
+Longbing Cao. AI Robots and humanoid AI: Review, 
+Perspectives, and Directions, 1-37, 2024.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Humanoid robots 
+OFFICE | FACULTY | DEPARTMENT
+14
+•
+Functional vs nonfunctional 
+•
+Functional humanoid: 
+Functional specifications of 
+human-like and lifelike 
+humanoids define and enable 
+how an AI humanoid look like, 
+what it does, and how it 
+implements its purposes, tasks, 
+and operations, etc. They 
+determine what humanoid 
+structures, senses, behaviors 
+and functions to implement and 
+operate
+•
+Nonfunctional humanoid: 
+safe and secure in their 
+operations and action-taking; 
+trustful and responsible for 
+their actions; transparent and 
+explainable in their outputs; 
+empathetic and rational during 
+teaming, collaboration and 
+interaction; and compliant, legal 
+and ethical for integrity and 
+regulation
+Longbing Cao. AI Robots and humanoid AI: Review, 
+Perspectives, and Directions, 1-37, 2024.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Humanoid robots 
+OFFICE | FACULTY | DEPARTMENT
+15
+• Applications 
+• Tasks: walking, conversational, 
+interactive, expressive, 
+generative, manipulative, 
+teleoperated, cognitive, and 
+imitative humanoids
+• Domains: service, entertaining, 
+convention, caregiving, assistant, 
+advising, home, factory,  
+manufacturing, logistic, workflow, 
+online, arts, military, search, 
+exploratory, security, compliance 
+and social humanoids
+Longbing Cao. AI Robots and humanoid AI: Review, 
+Perspectives, and Directions, 1-37, 2024. 
+Humanoid robot applications
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+LLMs-driven Humanoid AI 
+Systems
+INTEGRATING ROBOT, EDGE 
+AND CLOUD INTELLIGENCE
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Robotic Transformer 2 (RT-2)
+OFFICE | FACULTY | DEPARTMENT
+17
+https://deepmind.google/discover/blog/rt-2-new-model-translates-vision-and-language-into-action/
+• Vision-language to action
+• Vision-language-action model
+• VLM on web-scale data and robotics data
+• Transfer knowledge to robotic instructions for robot control 
+• Robot learning from multitask demonstrations
+• CoT for multi-stage semantic reasoning
+• Generalisation capabilities and semantic and visual 
+understanding
+https://youtu.be/F3xCTq15mQM
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Humanoid AI – LLMs, MLLMs, GAI
+OFFICE | FACULTY | DEPARTMENT
+18
+•
+On-humanoid, edge and cloud
+•
+Humanoid functional: 
+•
+Vision, perception, communication, 
+action, and emotion
+•
+Classification, imitation, recognition, 
+sentiment analysis
+•
+Multimodal, MLLMs
+•
+Vision-to-action
+•
+Vision-to-language
+•
+Vision-to-language-to-emotion
+•
+Nonfunctional: 
+•
+Situated, embodied
+•
+Humane, emotional, personalized
+•
+Real-time
+•
+Interactive 
+•
+X-AI, AI4Tech
+Longbing Cao. AI Robots and humanoid AI: Review, 
+Perspectives, and Directions, 1-37, 2024.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Ameca
+OFFICE | FACULTY | DEPARTMENT
+19
+https://youtu.be/F3xCTq15mQM
+• Original Ameca
+• Humanoid
+• 32 degrees of freedom - 
+emotion
+• Conversation – ChatGPT
+• MQ’s Ameca
+• Integrating X-AI paradigms 
+and multimodal 
+capabilities 
+•
+Vision, conversation, 
+visual conversation, 
+action, language/text 
+•
+Emotion, sentiment
+•
+Multimodal recognition, 
+imitation, classification, 
+conversation, 
+• Integrating 
+DecentralisedAI
+• AI4Tech
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+MLLMs-driven Humanoid: 
+Ameca
+HUMANOID LEARNING DRIVEN BY 
+MLLMS
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Ameca – LLMs-driven conversation
+OFFICE | FACULTY | DEPARTMENT
+21
+• ChatGPT-driven Ameca
+• Google Cloud: speech-to-text
+• Amazon Polly: text-to-speech
+• Devices: microphone, speaker
+• Streaming output to reduce latency
+• Code for Ameca to call LLMs
+  output_stream = streamToDefaultTTS
+ 
+if channel == "speech_recognized":
+      await self.recursively_call_llm(
+      message, output_stream=self.output_stream)
+  async def recursively_call_llm(self, message: str, output_stream):
+ 
+"""Deal with messages here """  
+• Video of Ameca for conversation
+Tritium Software Framework
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Ameca – face recognition
+OFFICE | FACULTY | DEPARTMENT
+22
+• Face recognition definition
+• Identify a person from an image w.r.t. facial features 
+• Who is this person among a database of people?
+• Pipeline: face detection, face alignment, feature 
+extraction, comparison with stored face embeddings
+• Code for implementation
+  app = FaceAnalysis(providers=['CUDAExecutionProvider'])
+  def find_from_db(frame:bytes):
+  # Detect faces and get face embeddings    
+  faces = app.get(np.asarray(Image.open(BytesIO(frame))))
+      embeds = np.array([face.normed_embedding for face in faces])
+      cos_sim = FaceEmbdCacheObj.embed_caches @ np.transpose(embeds)
+      idx = np.argmax(cos_sim)
+• Video of Ameca for recognising face
+InsightFace
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Ameca – object recognition
+OFFICE | FACULTY | DEPARTMENT
+23
+• Object recognition definition
+• Detect and classify objects within an image
+• What is in the image? (e.g., car, cat, chair)
+• Where is it located?
+• Object detection (bounding box + labels)
+• Code for implementation
+from ultralytics import YOLO
+  # Load a pretrained YOLO11n model
+  model = YOLO("yolo11n.pt") 
+  metrics = model.val()
+  results = model("path/to/image.jpg")
+  results[0].show() # Display results
+• Example of Ameca for recognising objects
+Ultralytics-Yolo
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Ameca – action recognition
+OFFICE | FACULTY | DEPARTMENT
+24
+• Action recognition definition
+• Identify what action or activity is happening 
+in a video (or a sequence of images)
+• What someone is doing over time
+• Essentially a classification task
+Hiera: A Hierarchical Vision Transformer without the Bells-and-Whistles
+• Code for implementation
+model = hiera.hiera_base_16x224(pretrained=True,
+checkpoint=CHECK_POINT).to(device).eval() 
+frames = np.stack([
+np.asarray(Image.open(BytesIO(frame_buffer.buffer_content[-i-1])))
+for i in range(HieraConf.n_frames_per_video)])
+  out = model(get_processed_frames(frames))
+• Video of Ameca for recognising actions
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Ameca – facial expression recognition
+OFFICE | FACULTY | DEPARTMENT
+25
+• Emotion recognition definition
+• Detect a person's emotional state by 
+analysing their facial features.
+• Pipeline: face detection, face alignment, 
+feature extraction, emotion classification
+ResEmoNet: Bridging Acuracy and Loss Reduction in Facial Emotion Recognition 
+• Code for implementation
+  class ResEmoteNet(nn.Module):
+      def __init__(self):
+          super(ResEmoteNet, self).__init__()
+          self.conv1 = nn.Conv2d(3, 64, kernel_size=3)
+          self.bn1 = nn.BatchNorm2d(64) …
+          self.fc4 = nn.Linear(256, 7)
+• Example of Ameca for recognising emotions
+Sad
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Ameca – emotion imitation
+OFFICE | FACULTY | DEPARTMENT
+26
+• Emotion imitation definition
+• Recognize, interpret, and replicate human 
+emotional expressions through body 
+language, facial expressions, and vocal tones
+• Pipeline: emotion recognition, emotion 
+mapping, emotion expressions
+• Code for implementation
+async def emotion_imitation_func():
+"""Call this function when being asked to imitate 
+   or mimic the emotion or facial expression. """
+   system.messaging.post('deal_vtasks’,
+   [VisualTasks.EmotionImitation.encode(encoding)])   
+    response = await session.post(url="https://api.openai.com/xxx", headers=self.headers, json=self.payload)
+    EMOTION_TO_ANIM.get(emo_label) # get proper expression animation
+• Video of Ameca for imitating emotions
+HumanoidBackend
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Ameca – visual Q/A
+OFFICE | FACULTY | DEPARTMENT
+27
+• Visual Q/A definition
+• A task where a system is given an image 
+and a textual question about the image, 
+and it must provide a correct answer
+• Pipeline: Image understanding, question 
+understanding, reasoning and answering
+• Code for implementation
+  async def vqa_func(query: str):
+  """Perform visual question answering task"""
+     system.messaging.post('deal_vtasks’,
+     [VisualTasks.VQA.encode(encoding), query.encode(encoding)])  
+     content = [{"type": "text", "text": query,}, {"type": "image_url", "image_url": {
+     "url": f"data:image/jpeg;base64,{base64_image}"}}]
+ 
+• Video of Ameca visual Q/A
+HumanoidBackend
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Ameca – RAG (Retrieval-Augmented 
+Generation)
+OFFICE | FACULTY | DEPARTMENT
+28
+• RAG definition
+• A hybrid AI approach that combines retrieval 
+and generation techniques to produce more 
+accurate, factual, and contextually rich text 
+responses
+• Pipeline: retrieval, augmentation, generation
+• Code for implementation
+  def get_prompt(self, query):
+      related_info = self.retriever.retrieve(query):
+      prompt = f"""Your name is Ameca, you are answering 
+  questions from Macquarie University’s students and staffs.
+ The user is asking about: {query}. The related information is: ***{related_info}***"""
+  def generate_response(self, query): """get response from language models"""
+• Example of Ameca with RAG (Staff Training Day)
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Ameca – multi-party conversation
+OFFICE | FACULTY | DEPARTMENT
+29
+• Multi-party conversation definition
+• Three or more participants (humans or 
+agents), where multiple people talk, respond, 
+and interact with each other dynamically
+• Active speaker detection
+• Multimodal emotion recognition
+HumanoidVLE
+• Code for implementation
+  if channel == 'vle_task': # task trigger
+      resp = await self.task_dealer.deal_visual_text_task(
+      MultimodalTasks.VLE.encode(encoding), tend-tstart)
+  text_embed = self.gen_text_reps(text_input_id)
+  vision_embed = self.gen_vision_reps(vision_input)
+  multimodal_features = self.cross_modal_transformer(text_embed, vision_embed, vision_embed)
+  return self.classifier((multimodal_out) # output emotion label
+• Video of Ameca for multi-party conversation
+Peizhen Li, Longbing Cao, Xiao-Ming Wu, Xiaohan Yu, Runze Yang. UGotMe: An Embodied System for Affective Human-Robot Interaction, ICRA, 2025.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Humanoid AI: Future
+OPEN ISSUES AND OPPORTUNITIES
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Humanoid AI: open issues
+OFFICE | FACULTY | DEPARTMENT
+31
+• Humanoids imitate human intelligence
+• by their enabling appearance, brain, perceptiveness, activeness, connectiveness, interaction, organization, 
+knowledge, cybernetics, generalization, and system
+• humanoid AI
+• humanoid humanity, cognition, biomedicine, interaction, learning, adaptation, optimization, cybernetics, 
+decentralization, metaverse, resilience, and naturalness
+• Humanoid Capability Maturity
+• the proficiency of ability, functionality and sophistication of humanoids in pursuing their objectives and 
+performing their tasks:
+• Humanoid intelligence capacity
+• Humanoid functional proficiency
+• Humanoid complexity resilience
+Longbing Cao. AI Robots and humanoid AI: Review, Perspectives, and Directions, 1-37, 2024.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Humanoid AI: future directions
+OFFICE | FACULTY | DEPARTMENT
+32
+• Addressing Humanoid Humanity Dilemma by Developing Humane Humanoids
+• Cultivating Humanoid Humanity and Subjectivity
+• Mind-to-Action for Mindful and Actionable Humanoids
+• Transitional Omnimodal Humanoid Modeling
+• Virtual-Real Humanoid-Human-Metaverse Symbiosis
+• Humanoid Digital Twins and Metaverse
+• Humanoid Animation, Imitation and Simulation to Operation
+• Humanoid Demonstration to Generation
+Longbing Cao. AI Robots and humanoid AI: Review, Perspectives, and Directions, 1-37, 2024.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Metaverse Humanoid AI
+SYNERGISING IMMERSIVE METAVERSE, 
+HUMANOID AND AI
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Virtual-real digital twins
+OFFICE | FACULTY | DEPARTMENT
+34
+• Cyber-physical-social systems 
+(CPSSs)
+• Human-humanoid-metaverse 
+ecosystem
+• Human: humanity, human 
+intelligence
+• Humanoid: physical 
+substitution, automation, 
+efficiency, scalability
+• Metaverse: cost-effective 
+transformation between 
+human and humanoid
+Longbing Cao. Decentralized AI: Edge Intelligence and Smart Blockchain, 
+Metaverse, Web3, and DeSci. IEEE Intell. Syst. 37(3): pp. 6-19, 2022
+Longbing Cao. AI4Tech: X-AI Enabling X-Tech with Human-like, 
+Generative, Decentralized, Humanoid and Metaverse AI, International 
+Journal of Data Science and Analytics, 18, 219–238, 2024
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Virtual-real digital twins
+OFFICE | FACULTY | DEPARTMENT
+35
+• Human training - virtual 
+simulation – robot/AI agents
+• Virtual-real digital twin
+• Virtual/metaverse AI
+• Physical/humanoid AI
+• Human supervision, 
+demonstration
+• Imitating human → 
+virtuality/simulation → 
+physical/humanoids
+https://youtu.be/S4tvirlG8sQ
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Physical-cyber-social-virtual 
+metaverse humanoid AI 
+OFFICE | FACULTY | DEPARTMENT
+36
+• Human-humanoid-metaverse 
+ecosystem
+• Physical-cyber-social-virtual metaverse 
+humanoid AI
+• AIVerse
+• X-AI
+• X-Tech
+• Physical-cyber-social-virtual 
+metaverse ecosystem
+• HealthAIVerse
+• 3D/virtual/digital human
+• Humanoid specialists
+• Patient/medical conditions
+• Human specialists
+Longbing Cao. AI4Tech: X-AI Enabling X-Tech with Human-like, 
+Generative, Decentralized, Humanoid and Metaverse AI, International 
+Journal of Data Science and Analytics, 18, 219–238, 2024
+Fig. 6 Metaverse AI ecosystem: Integrating physical, cyber, social, and virtual capabilities and stakeholders to 
+enable decentralized, privacy-preserving, and secure cross-disciplinary, cross-domain, and cross-
+organizational X-AI and X-Tech. Notes: some of icons are from the web
+Fig 7. A HealthAIVerse framework: integrating stakeholders with digital twins, medical systems, patient data, 
+and humanoid medical services. Notes: some of icons are from the web
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Take-home Messages
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Humanoid AI
+OFFICE | FACULTY | DEPARTMENT
+38
+•A megatrend: LLMs-driven humanoids
+•Multimodal humanoid AI
+•Metaverse humanoid AI
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Question & Answer
