@@ -129,6 +129,7 @@ export OPENAI_API_KEY=your-key
 ## Author
 
 **Shaimon Rahman**  
+**Md Nadim Yeasin**
 
 
 ---
