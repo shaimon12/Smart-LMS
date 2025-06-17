@@ -1,0 +1,22 @@
+[
+  {
+    "question": "What's the thing we need to do next week?",
+    "answer": "Could you clarify whether you're asking about the lecture topic, practical, or assignment deadline?"
+  },
+  {
+    "question": "Is the model okay?",
+    "answer": "Can you specify which model you are referring to (e.g., GPT-3.5, BERT, a fine-tuned model)?"
+  },
+  {
+    "question": "What should I know?",
+    "answer": "Could you please clarify which topic or module you're referring to?"
+  },
+  {
+    "question": "Everything about NLP?",
+    "answer": "That's quite broad. Could you narrow it down to a specific subtopic like transformers, embeddings, or evaluation?"
+  },
+  {
+    "question": "What's the answer?",
+    "answer": "Can you specify the question you're referring to? That will help me provide a precise answer."
+  }
+]

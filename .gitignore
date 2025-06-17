@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+*.env
+*.log
+
+# Jupyter
+.ipynb_checkpoints
+
+# VSCode
+.vscode/
+
+# Environment
+.env
+*.sqlite
+*.db
+
+# Datasets
+data/audio_input/*
+!data/audio_input/transcriptions/
+
+# Models / Vectors
+chroma_store/
+models/
+*.pt
+*.bin
