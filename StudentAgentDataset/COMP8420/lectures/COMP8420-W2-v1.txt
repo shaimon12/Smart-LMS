@@ -1,0 +1,332 @@
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or has licence to 
+use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Date: 07th March 2025
+COMP 8420 Advanced NLP
+WEEK 2: DEEP LEARNING FUNDAMENTALS
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Staff Profile
+Dr Qiongkai Xu
+Macquarie University
+Lecture in NLP
+qiongkai.xu@mq.edu.au
+OFFICE | FACULTY | DEPARTMENT
+2
+Office hours: Friday 2-3 pm (S1)
+Location: 312 RPD
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+• Assignment 1:
+• Published and finalised;
+• Start working on that ASAP;
+• Attend workshops in weeks 1-3.
+• Assignment 2:
+• The draft is published;
+• Review and feedback;
+• End in recession period (which is also not far away).
+Assignments
+OFFICE | FACULTY | DEPARTMENT
+3
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or has licence to 
+use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Date: 07th March 2025
+Deep Learning (DL) Fundamentals
+REVIEW OF DEEP LEARNING TECHNOLOGIES FOR NLP
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+DL Fundamentals
+YOU SHOULD HAVE KNOWN IT 
+AND YOU CAN IMPLEMENT IT IN 
+A COUPLE OF WEEKS.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+•DL is the capstone of modern NLP (in recent 
+10 years).
+•Applying DL to NLP inspires a lot of research 
+and applications.
+•The knowledge includes:
+•Language model (LM);
+•(‘Generic’) Deep learning;
+•DL for LM
+Review – DL for NLP
+OFFICE | FACULTY | DEPARTMENT
+6
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Language Model
+HOW TO MODEL LANGUAGES?
+HOW TO MODEL OTHER (NLP) TASKS?
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Intuition of LM
+OFFICE | FACULTY | DEPARTMENT
+8
+Macquarie University is a public research university 
+located in Sydney, New South Wales, Australia. 
+Founded in 1964 by the New South Wales 
+Government, it was the third university to be 
+established in the metropolitan area of Sydney.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Intuition of LM
+OFFICE | FACULTY | DEPARTMENT
+9
+Macquarie University is a public research university 
+located in Sydney, New South Wales, Australia. 
+Founded in 1964 by the New South Wales 
+Government, it was the third university to be 
+established in the metropolitan area of Sydney.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Intuition of LM
+OFFICE | FACULTY | DEPARTMENT
+10
+Macquarie [?]
+Macquarie University [?]
+Macquarie University is [?]
+Macquarie University is located [?]
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Intuition of LM
+OFFICE | FACULTY | DEPARTMENT
+11
+“I was thinking about the sequence that goes
+0, 1, 1, 2, 3, 5, 8, 13, __?”
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+•What is a Language Model?
+P(wt | w<t; ϑ)
+•How to use LM for Classification
+P(c | w1, w2, …, wN; ϑ)
+•Some DL build blocks: Transformer, LSTM, CNN.
+Language Model
+OFFICE | FACULTY | DEPARTMENT
+12
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Deep Learning
+LINEAR REGRESSION TO 
+NEURAL NETWORK
+LOSS AND OPTIMIZATION
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Linear Regression
+OFFICE | FACULTY | DEPARTMENT
+14
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Neural Network
+OFFICE | FACULTY | DEPARTMENT
+15
+𝑧= 𝒙· 𝒘+ 𝑏
+σ 𝑧=
+1
+1 + exp(−𝑧)
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Back Propagation
+OFFICE | FACULTY | DEPARTMENT
+16
+Tools:
+•
+PyTorch
+•
+TensorFlow
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Learning Loss
+OFFICE | FACULTY | DEPARTMENT
+17
+Embedding Vector
+Cross-Entropy Loss:
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Optimization
+OFFICE | FACULTY | DEPARTMENT
+18
+•
+We have a loss function we want to minimize 𝐿(𝜃)
+•
+Gradient Descent is an algorithm to minimize 𝐿(𝜃)
+•
+Idea: for the current value of 𝐿(𝜃), calculate the gradient of 𝐿(𝜃), then take a small step in the 
+direction of the negative gradient. Repeat.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+DL for LM
+PRE-TRAINING LLM
+PRIMARY ARCHITECTURES: CNN, 
+LSTM, AND TRANSFORMER.
+SUPERVISED FINETUNING
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Convolutional Neural Network (CNN)
+OFFICE | FACULTY | DEPARTMENT
+20
+“Releasing its fresh quarterly 
+forecasts, the central bank painted a 
+gloomy picture on the path for 
+inflation, with one essential cost for 
+many playing a key role.”
+Can we use Image classification network for text classification?
+Input image
+Input text
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+OFFICE | FACULTY | DEPARTMENT
+21
+Convolutional Neural Network (CNN)
+AI is changing our life
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Recurrent Neural Network (RNN)
+OFFICE | FACULTY | DEPARTMENT
+22
+“AI is changing our life”
+What is RNN?
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Recurrent Neural Network (RNN)
+OFFICE | FACULTY | DEPARTMENT
+23
+“AI is changing our life”
+is
+changing
+our
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Recurrent Neural Network (RNN)
+OFFICE | FACULTY | DEPARTMENT
+24
+Inside of RNN
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Recurrent Neural Network (RNN)
+OFFICE | FACULTY | DEPARTMENT
+25
+Inside of RNN and Forward Pass
+f is an activation function
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Recurrent Neural Network (RNN)
+OFFICE | FACULTY | DEPARTMENT
+26
+Discussion: Pros and Cons of RNNs
+Cons:
+1. Vanishing Gradient Problem
+2. Difficulty in Capturing Long-Term Dependencies
+3. Memory Limitations: balance between old and new info
+Pros:
+1. Can process temporal sequences
+2. Can handle variable-length inputs
+3. Parameter sharing
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Long Short-Term Memory(LSTM)
+OFFICE | FACULTY | DEPARTMENT
+27
+Six main components
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Recurrent Neural Network (RNN)
+OFFICE | FACULTY | DEPARTMENT
+28
+Every component of an input sequence has 
+information from both the past and present
+What’s the advantage?
+Bi-directional LSTM:
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Transformer
+OFFICE | FACULTY | DEPARTMENT
+29
+Encoder-Decoder Arch.:
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Transformer
+OFFICE | FACULTY | DEPARTMENT
+30
+Attention Module
+Feed Forward Module
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Transformer
+OFFICE | FACULTY | DEPARTMENT
+31
+Q: query
+K: key
+V: value
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Motivation (recap)
+OFFICE | FACULTY | DEPARTMENT
+32
+Macquarie University is a public research university 
+located in Sydney, New South Wales, Australia. 
+Founded in 1964 by the New South Wales 
+Government, it was the third university to be 
+established in the metropolitan area of Sydney.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+PLM - BERT
+OFFICE | FACULTY | DEPARTMENT
+33
+Devlin, Jacob, et al. "BERT: Pre-training of Deep Bidirectional 
+Transformers for Language Understanding." In Proc. of NAACL 2019.
+Encoder:
+Masked-LM:
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+PLM - GPT
+OFFICE | FACULTY | DEPARTMENT
+34
+Decoder:
+Causal-LM:
+Radford, Alec, et al. "Improving Language 
+Understanding by Generative Pre-Training."
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+PLM – T5/GLM
+OFFICE | FACULTY | DEPARTMENT
+35
+Encoder-Decoder:
+Raffel, Colin, et al. "Exploring the limits of transfer learning 
+with a unified text-to-text transformer." In JMLR.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Training and Using PLM
+OFFICE | FACULTY | DEPARTMENT
+36
+Step 1: Pre-train (on Language Model)
+Step 2: Fine-tune (on Your Task)
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this material publicly online without permission. Macquarie University is the copyright owner of (or 
+has licence to use) the intellectual property in this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+•How to use a Language Model?
+•P(wt | w<t): predict the next or masked words
+•P(c | w): predict the class label
+•Use the embedding vectors v(s) + ML
+•Add prompts?!
+•P(wt | w<t, p): predict the next word
+•P(c | w, p): predict the label
+•V(w, p): use conditional embedding vectors
+Using Language Model
+OFFICE | FACULTY | DEPARTMENT
+37
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Connection to Assignment 1
+THE LAST SECTION OF ASSIGNMENT 1.
+NO NEED TO PRE-TRAIN A LM. SFT WILL 
+BE GOOD.
+BE MINDFUL ABOUT TRAINING, PRE-
+TRAINING AND SUPERVISED FINE-
+TUNING.
+This material is provided to you as a Macquarie University student for your individual research and study purposes only. You cannot share this 
+material publicly online without permission. Macquarie University is the copyright owner of (or has licence to use) the intellectual property in 
+this material. Legal and/or disciplinary actions may be taken if this material is shared without the University’s written permission.
+Questions & Answers

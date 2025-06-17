@@ -1,0 +1,22 @@
+[
+  {
+    "question": "Do we have to use LangChain for Assignment 3?",
+    "answer": "No, LangChain is optional. You can use any framework that supports RAG or LLM integration."
+  },
+  {
+    "question": "Can we use ChatGPT API?",
+    "answer": "Yes, but remember that you must demonstrate your own engineering effort in addition to using the API."
+  },
+  {
+    "question": "Is it okay to work solo on Assignment 3?",
+    "answer": "Projects should be completed in teams of two unless you\u2019ve received special permission."
+  },
+  {
+    "question": "What\u2019s the expected length of the presentation?",
+    "answer": "Each team should present for 3\u20134 minutes during the Week 13 practice workshop."
+  },
+  {
+    "question": "Can we include public datasets in our project?",
+    "answer": "Yes, you may include public datasets as long as they\u2019re relevant to your topic and cited properly."
+  }
+]
