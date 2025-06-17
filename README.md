@@ -104,7 +104,7 @@ This highlights the importance of RAG in academic NLP tools.
 
 1. **Open Notebook**
 
-   Use Jupyter to open the main notebook (e.g., `AI-Powered Multi-Agent LMS Assistant.ipynb`).
+   Use Jupyter to open the main notebook (`AI-Powered Multi-Agent LMS Assistant.ipynb`).
 
 2. **Install Requirements**
 ```bash
